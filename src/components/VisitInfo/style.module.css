@@ -1,0 +1,25 @@
+.info {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.message,
+.link {
+  color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.message {
+  margin-left: 0.8em;
+  font-size: 0.8em;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.colored {
+  color: black;
+}

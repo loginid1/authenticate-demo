@@ -1,0 +1,17 @@
+.footer {
+  height: 50px;
+  width: 100%;
+  font-size: 0.8em;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--secondary-color);
+  bottom: 0;
+  position: fixed;
+}
+
+@media (min-width: 769px) {
+  .footer {
+    display: flex;
+  }
+}

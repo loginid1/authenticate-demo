@@ -1,0 +1,41 @@
+input {
+  margin-bottom: 0.5em;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  background: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  padding: 2.5em;
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2em;
+  z-index: 2;
+}
+
+.logo {
+  margin: 0 auto 1em;
+  max-width: 200px;
+}
+
+.info {
+  font-size: 1.7em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.info .message:nth-child(2) {
+  color: var(--main-color);
+}
+
+.blue {
+  color: var(--main-color);
+}
+
+@media (min-width: 390px) {
+  .info {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+}
