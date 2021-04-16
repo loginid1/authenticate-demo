@@ -5,4 +5,8 @@ const Button = function ({ text }) {
   return <button className={style.button}>{text}</button>;
 };
 
+export const SmallButton = function ({ text }) {
+  return <button className={style.smallbutton}>{text}</button>;
+};
+
 export default Button;

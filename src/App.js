@@ -3,6 +3,7 @@ import "./App.css";
 
 import Register from "./views/Register/";
 import Login from "./views/Login/";
+import Logout from "./views/Logout/";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
         <Route path="/">
           <Register />

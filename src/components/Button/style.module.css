@@ -1,4 +1,5 @@
-.button {
+.button,
+.smallbutton {
   background: var(--main-color);
   color: var(--secondary-color);
   font-weight: bold;
@@ -8,4 +9,9 @@
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  display: block;
+}
+
+.smallbutton {
+  max-width: fit-content;
 }
