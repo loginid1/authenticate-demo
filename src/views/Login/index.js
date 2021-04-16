@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./style.module.css";
-import registerStyle from "../Home/style.module.css";
+import registerStyle from "../Register/style.module.css";
 
 import Footer from "../../components/Footer/";
 import AuthForm from "../../components/AuthForm/";
