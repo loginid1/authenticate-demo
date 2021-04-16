@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
 import Header from "../../components/Header/";
@@ -7,6 +8,13 @@ import Account from "../../components/Account/";
 import Button from "../../components/Button/";
 
 const Logout = function () {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    //change this to directory
+    history.replace("/register");
+  };
+
   return (
     <div className={style.app}>
       <Header />
@@ -27,7 +35,7 @@ const Logout = function () {
         />
       </div>
       <div className={style.button}>
-        <Button text="Logout" />
+        <Button text="Logout" onClick={handleLogout} />
       </div>
       <Footer />
     </div>

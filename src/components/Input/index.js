@@ -1,10 +1,8 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Input = function ({ placeholder }) {
-  return (
-    <input type="text" className={style.input} placeholder={placeholder} />
-  );
+const Input = function (props) {
+  return <input type="text" className={style.input} {...props} />;
 };
 
 export default Input;
