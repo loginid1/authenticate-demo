@@ -1,0 +1,97 @@
+.modal {
+  width: 100%;
+  margin: 0 10px;
+  max-width: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.2);
+  animation: scale-in 0.3s ease;
+}
+
+.header {
+  background: #ebebeb;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-top: 20px;
+}
+
+.body {
+  background: var(--secondary-color);
+  text-align: center;
+  padding: 20px;
+  padding-top: 4em;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.body b {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.body button {
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -35px;
+}
+
+.lock {
+  height: 150px;
+  display: block;
+}
+
+.fido2 {
+  margin-left: -35px;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 0.3s ease;
+}
+
+@media (min-width: 390px) {
+  .lock {
+    margin-left: 17%;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

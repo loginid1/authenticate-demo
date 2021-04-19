@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="165.644" height="171.56" viewBox="0 0 165.644 171.56">
+  <g id="Lock" transform="translate(-2 -1)">
+    <g id="Circle_Shadow" data-name="Circle Shadow" transform="translate(2 6.916)">
+      <circle id="Ellipse_86" data-name="Ellipse 86" cx="82.822" cy="82.822" r="82.822" transform="translate(0 0)" fill="#189f99"/>
+    </g>
+    <g id="Circle" transform="translate(2 1)">
+      <circle id="Ellipse_87" data-name="Ellipse 87" cx="82.822" cy="82.822" r="82.822" fill="#1cbbb4"/>
+    </g>
+    <path id="Long_Shadow" data-name="Long Shadow" d="M132.791,81.658,70.922,19.79l-4.45,4.048-15.789-5.9L34.841,31.772V62.331L20.58,96.911l41.335,41.416a83.1,83.1,0,0,0,70.876-56.668Z" transform="translate(31.226 28.47)" opacity="0.15"/>
+    <g id="Top" transform="translate(60.974 41.209)">
+      <path id="Path_5803" data-name="Path 5803" d="M48.126,16A24.126,24.126,0,0,0,24,40.126V77.654a24.126,24.126,0,1,0,48.251,0V40.126A24.126,24.126,0,0,0,48.126,16Zm13.4,61.654a13.4,13.4,0,1,1-26.806,0V40.126a13.4,13.4,0,1,1,26.806,0Z" transform="translate(-24 -16)" fill="#fffcf2"/>
+    </g>
+    <g id="Bottom" transform="translate(50.51 79.089)">
+      <rect id="Rectangle_459" data-name="Rectangle 459" width="69.807" height="47.327" rx="2" transform="translate(0 0)" fill="#edc03d"/>
+    </g>
+    <g id="Holes" transform="translate(77.057 92.071)">
+      <path id="Path_5804" data-name="Path 5804" d="M46.084,43.086A8.042,8.042,0,1,0,33.029,49.3a5.361,5.361,0,1,0,10.052,0A8.042,8.042,0,0,0,46.084,43.086Z" transform="translate(-30 -34.974)" fill="#344e5f"/>
+    </g>
+  </g>
+</svg>
