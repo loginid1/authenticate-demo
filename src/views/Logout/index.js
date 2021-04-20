@@ -6,14 +6,17 @@ import Header from "../../components/Header/";
 import Footer from "../../components/Footer/";
 import Account from "../../components/Account/";
 import Button from "../../components/Button/";
+import { useUserState } from "../../contexts/User";
 import { useBody } from "../../hooks/body";
 
 const Logout = function () {
   const history = useHistory();
+  const [, , logoutUser] = useUserState();
   useBody(false);
 
   const handleLogout = () => {
     //change this to directory
+    logoutUser();
     history.replace("/register");
   };
 

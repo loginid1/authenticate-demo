@@ -6,9 +6,10 @@ import Footer from "../../components/Footer/";
 import AuthForm from "../../components/AuthForm/";
 import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
-import Button from "../../components/Button/";
+import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots.svg";
+import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
 import { useBody } from "../../hooks/body";
 
@@ -16,6 +17,7 @@ const Register = function () {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
+  const [, loginUser] = useUserState();
   useBody();
 
   const handleEmail = (event) => {
@@ -23,7 +25,8 @@ const Register = function () {
   };
   const handleRegister = async () => {
     try {
-      await dw.register(email);
+      const { user, username } = await dw.register(email);
+      loginUser({ ...user, username });
       history.replace("/dashboard");
     } catch (e) {
       //handle error here
@@ -42,7 +45,13 @@ const Register = function () {
           </div>
         </div>
         <Input placeholder="Email Address" onChange={handleEmail} />
-        <Button text="Create Account" onClick={handleRegister} />
+        <FingerprintButton text="Create Account" onClick={handleRegister} />
+        <p className={style.member}>
+          Already a Member?{" "}
+          <a href="/login" className={style.link}>
+            Login
+          </a>
+        </p>
       </AuthForm>
       <ViewInfo />
       <Footer />

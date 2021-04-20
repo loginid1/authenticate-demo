@@ -5,12 +5,15 @@ import style from "./style.module.css";
 import VisitInfo from "../VisitInfo/";
 import { ReactComponent as Logo } from "../../imgs/logo.svg";
 import { SmallButton } from "../Button/";
+import { useUserState } from "../../contexts/User";
 
 const Header = function () {
   const history = useHistory();
+  const [, , logoutUser] = useUserState();
 
   const handleLogout = () => {
     //change this to directory
+    logoutUser();
     history.replace("/register");
   };
 
