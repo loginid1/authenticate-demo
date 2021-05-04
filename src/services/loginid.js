@@ -28,4 +28,10 @@ export const retrieveUser = async (username) => {
   });
 };
 
-export default { initAuthenticate, retrieveUser };
+export const generateCode = async (user) => {
+  return await request(`${nativeUrl}/codes/short/generate`, { body: { user } });
+};
+
+const allrequests = { initAuthenticate, retrieveUser, generateCode };
+
+export default allrequests;

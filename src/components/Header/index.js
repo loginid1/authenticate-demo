@@ -9,7 +9,7 @@ import { useUserState } from "../../contexts/User";
 
 const Header = function () {
   const history = useHistory();
-  const [, , logoutUser] = useUserState();
+  const { logoutUser } = useUserState();
 
   const handleLogout = () => {
     //change this to directory

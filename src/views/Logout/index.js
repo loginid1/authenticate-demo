@@ -11,7 +11,7 @@ import { useBody } from "../../hooks/body";
 
 const Logout = function () {
   const history = useHistory();
-  const [, , logoutUser] = useUserState();
+  const { logoutUser } = useUserState();
   useBody(false);
 
   const handleLogout = () => {

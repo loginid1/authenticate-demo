@@ -9,6 +9,7 @@ export const useUserState = function () {
 
 export const UserProvider = function ({ children }) {
   const [user, setUser] = useState(null);
+  const [tempUser, setTempUser] = useState(null);
 
   const loginUser = (user) => {
     window.localStorage.setItem("currentUser", JSON.stringify(user));
@@ -29,9 +30,7 @@ export const UserProvider = function ({ children }) {
     }
   }, [user]);
 
-  return (
-    <UserContext.Provider value={[user, loginUser, logoutUser, userExists]}>
-      {children}
-    </UserContext.Provider>
-  );
+  const fns = { loginUser, logoutUser, userExists, tempUser, setTempUser };
+
+  return <UserContext.Provider value={fns}>{children}</UserContext.Provider>;
 };

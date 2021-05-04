@@ -9,8 +9,9 @@
   text-align: center;
 }
 
-@media (min-width: 410px) {
+@media (min-width: 420px) {
   .info {
+    font-weight: normal;
     font-size: 2em;
   }
 }

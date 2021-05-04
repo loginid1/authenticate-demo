@@ -17,7 +17,7 @@ const Register = function () {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
-  const [, loginUser] = useUserState();
+  const { loginUser } = useUserState();
   useBody();
 
   const handleEmail = (event) => {

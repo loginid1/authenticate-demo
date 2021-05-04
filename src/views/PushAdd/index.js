@@ -21,7 +21,7 @@ const Login = function () {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const [isFido2Supported] = useDirectweb();
-  //const [, loginUser] = useUserState();
+  const { setTempUser } = useUserState();
   useBody();
 
   const handleEmail = (event) => {
@@ -32,6 +32,8 @@ const Login = function () {
       //might need to refractor
       const { assertion_payload } = await loginid.initAuthenticate(email);
       if (assertion_payload.allowCredentials.length > 0) {
+        const { username, id } = await loginid.retrieveUser(email);
+        setTempUser({ username, id });
         history.replace("/code/generate");
       } else {
         console.log("No found credentials");
