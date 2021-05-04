@@ -20,13 +20,18 @@ const Codes = function ({ locked }) {
     let number = event.currentTarget.value;
     if (locked || isNaN(Number(number))) return;
 
-    //restrict to one number
+    const codesCp = [...codes];
+    const nextSibling = event.currentTarget.nextSibling;
+
     if (number.length > 1) {
       number = number[1];
     }
 
-    const codesCp = [...codes];
     codesCp[index] = number;
+
+    if (nextSibling && number) {
+      nextSibling.focus();
+    }
     setCodes(codesCp);
   };
 
@@ -40,8 +45,10 @@ const Codes = function ({ locked }) {
   }, [tempUser]);
 
   useEffect(() => {
-    handleGetcodes();
-  }, [handleGetcodes]);
+    if (locked) {
+      handleGetcodes();
+    }
+  }, [handleGetcodes, locked]);
 
   return (
     <div className={`${registerStyle.app} ${loginStyle.app}`}>

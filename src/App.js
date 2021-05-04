@@ -23,6 +23,9 @@ function App() {
           <Route path="/authenticate">
             <PushAdd />
           </Route>
+          <Route path="/code/allow">
+            <Codes />
+          </Route>
           <PrivateTemp path="/code/generate">
             <Codes locked />
           </PrivateTemp>
