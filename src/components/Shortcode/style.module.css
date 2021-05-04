@@ -1,0 +1,29 @@
+.shortcodes {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--gray);
+}
+
+.number {
+  height: 50px;
+  width: 45px;
+  background: var(--secondary-color);
+  font-weight: bold;
+  font-size: 1.8em;
+  text-align: center;
+  color: #8798aa;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+}
+
+.number::-webkit-outer-spin-button,
+.number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.number[type="number"] {
+  -moz-appearance: textfield;
+}
