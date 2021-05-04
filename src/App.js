@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute/";
 import Register from "./views/Register/";
 import Login from "./views/Login/";
 import Logout from "./views/Logout/";
+import PushAdd from "./views/PushAdd/";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/authenticate">
+            <PushAdd />
           </Route>
           <PrivateRoute path="/dashboard">
             <Logout />
