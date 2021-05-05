@@ -30,7 +30,14 @@ export const UserProvider = function ({ children }) {
     }
   }, [user]);
 
-  const fns = { loginUser, logoutUser, userExists, tempUser, setTempUser };
+  const fns = {
+    loginUser,
+    logoutUser,
+    userExists,
+    user,
+    tempUser,
+    setTempUser,
+  };
 
   return <UserContext.Provider value={fns}>{children}</UserContext.Provider>;
 };

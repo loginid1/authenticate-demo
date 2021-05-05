@@ -20,15 +20,18 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/authenticate">
+          <Route path="/authenticate/:request">
             <PushAdd />
           </Route>
-          <Route path="/code/allow">
-            <Codes />
+          <Route path="/authenticate/:grant">
+            <PushAdd />
           </Route>
           <PrivateTemp path="/code/generate">
             <Codes locked />
           </PrivateTemp>
+          <PrivateRoute path="/code/allow">
+            <Codes />
+          </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Logout />
           </PrivateRoute>

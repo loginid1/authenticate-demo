@@ -22,6 +22,16 @@ export const initAuthenticate = async (username) => {
   });
 };
 
+export const waitForAuthentication = async (username, code) => {
+  return await request(`${baseUrl}/authenticate/code/wait`, {
+    body: {
+      client_id: apiKey,
+      username,
+      authentication_code: { code, type: "short" },
+    },
+  });
+};
+
 export const retrieveUser = async (username) => {
   return await request(`${nativeUrl}/manage/users/retrieve`, {
     body: { username },
@@ -32,6 +42,18 @@ export const generateCode = async (user) => {
   return await request(`${nativeUrl}/codes/short/generate`, { body: { user } });
 };
 
-const allrequests = { initAuthenticate, retrieveUser, generateCode };
+export const allowCode = async (user, code) => {
+  return await request(`${nativeUrl}/codes/short/allow`, {
+    body: { user, code },
+  });
+};
+
+const allrequests = {
+  initAuthenticate,
+  waitForAuthentication,
+  retrieveUser,
+  generateCode,
+  allowCode,
+};
 
 export default allrequests;

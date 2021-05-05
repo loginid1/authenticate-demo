@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import loginStyle from "../Login/style.module.css";
 import registerStyle from "../Register/style.module.css";
 import style from "./style.module.css";
@@ -17,11 +17,15 @@ import { useDirectweb } from "../../hooks/directweb";
 import { useBody } from "../../hooks/body";
 import loginid from "../../services/loginid";
 
+const messageRequest = "Let's login securely.";
+const messageGrant = "Login to verify your new device.";
+
 const Login = function () {
   const [email, setEmail] = useState("");
   const history = useHistory();
-  const [isFido2Supported] = useDirectweb();
-  const { setTempUser } = useUserState();
+  const params = useParams();
+  const [isFido2Supported, dw] = useDirectweb();
+  const { setTempUser, loginUser } = useUserState();
   useBody();
 
   const handleEmail = (event) => {
@@ -31,12 +35,21 @@ const Login = function () {
     try {
       //might need to refractor
       const { assertion_payload } = await loginid.initAuthenticate(email);
-      if (assertion_payload.allowCredentials.length > 0) {
+      if (assertion_payload.allowCredentials.length === 0) {
+        console.log("not allowed");
+        return;
+      }
+
+      if (params.request === "request") {
         const { username, id } = await loginid.retrieveUser(email);
-        setTempUser({ username, id });
+        setTempUser({ username, id, access: "generate" });
         history.replace("/code/generate");
+      } else if (params.request === "grant") {
+        const { user, username } = await dw.login(email);
+        loginUser({ ...user, username });
+        history.replace("/code/allow");
       } else {
-        console.log("No found credentials");
+        throw new Error("Authentication not allowed");
       }
     } catch (e) {
       console.log(e);
@@ -48,7 +61,9 @@ const Login = function () {
       <AuthForm>
         <div className={style.info}>
           <div>
-            <span className={registerStyle.blue}>Let's login securely.</span>
+            <span className={registerStyle.blue}>
+              {params.request === "request" ? messageRequest : messageGrant}
+            </span>
           </div>
         </div>
         <Input

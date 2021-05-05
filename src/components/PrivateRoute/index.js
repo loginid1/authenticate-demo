@@ -16,7 +16,7 @@ export const PrivateTemp = function ({ path, children }) {
   return tempUser ? (
     <Route path={path}>{children}</Route>
   ) : (
-    <Redirect to="/authenticate" />
+    <Redirect to="/authenticate/request" />
   );
 };
 

@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   background: var(--gray);
+  margin-bottom: 2em;
 }
 
 .number {
@@ -13,7 +14,7 @@
   font-size: 1.8em;
   text-align: center;
   color: #8798aa;
-  border: 1px solid var(--gray);
+  border: 1px solid #e5e5e5;
   border-radius: 8px;
 }
 

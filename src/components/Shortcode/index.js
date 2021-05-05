@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Number = function ({ number, onChange, refs }) {
+const Number = function ({ number, onChange }) {
   return <input className={style.number} onChange={onChange} value={number} />;
 };
 

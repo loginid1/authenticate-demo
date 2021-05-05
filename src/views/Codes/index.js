@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import loginStyle from "../Login/style.module.css";
 import registerStyle from "../Register/style.module.css";
@@ -7,13 +8,22 @@ import AuthForm from "../../components/AuthForm/";
 import Shortcodes from "../../components/Shortcode/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import ViewInfo from "../../components/VisitInfo/";
+import Button from "../../components/Button/";
 import { useBody } from "../../hooks/body";
 import { useUserState } from "../../contexts/User";
-import { generateCode } from "../../services/loginid";
+import {
+  generateCode,
+  allowCode,
+  waitForAuthentication,
+} from "../../services/loginid";
+
+const messageRequest = "A verification code has been generated.";
+const messageGrant = "Enter PIN to verify your new device.";
 
 const Codes = function ({ locked }) {
   const [codes, setCodes] = useState(["-", "-", "-", "-", "-", "-"]);
-  const { tempUser } = useUserState();
+  const { tempUser, user } = useUserState();
+  const history = useHistory();
   useBody();
 
   const handleInput = (index) => (event) => {
@@ -35,20 +45,37 @@ const Codes = function ({ locked }) {
     setCodes(codesCp);
   };
 
-  const handleGetcodes = useCallback(async () => {
+  const handleGetCodes = useCallback(async () => {
     try {
       const { code } = await generateCode(tempUser);
       setCodes(String(code).split(""));
+      const result = await waitForAuthentication(tempUser.username, code);
     } catch (e) {
       console.log(e);
     }
   }, [tempUser]);
 
+  const handleAllowCode = async () => {
+    const isValid = codes.every((code) => code && !isNaN(Number(code)));
+    if (!isValid) return;
+
+    try {
+      const code = codes.join("");
+      console.log(code);
+      const { is_authorized } = await allowCode(user, code);
+      if (is_authorized) {
+        //go to page
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (locked) {
-      handleGetcodes();
+      handleGetCodes();
     }
-  }, [handleGetcodes, locked]);
+  }, [handleGetCodes, locked]);
 
   return (
     <div className={`${registerStyle.app} ${loginStyle.app}`}>
@@ -56,17 +83,20 @@ const Codes = function ({ locked }) {
         <div className={style.info}>
           <div>
             <span className={registerStyle.blue}>
-              A verification code has been generated.
+              {locked ? messageRequest : messageGrant}
             </span>
           </div>
         </div>
         <Shortcodes codes={codes} handleInput={handleInput} />
-        <div className={style.resend}>
-          Didn't enter the verification code in time?{" "}
-          <span className={style.link} onClick={handleGetcodes}>
-            Regenerate another one.
-          </span>
-        </div>
+        {!locked && <Button text="Enter PIN" onClick={handleAllowCode} />}
+        {locked && (
+          <div className={style.resend}>
+            Didn't enter the verification code in time?{" "}
+            <span className={style.link} onClick={handleGetCodes}>
+              Regenerate another one.
+            </span>
+          </div>
+        )}
       </AuthForm>
       <ViewInfo colored />
       <Dots className={registerStyle["dots-left"]} />
