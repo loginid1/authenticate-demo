@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
-import Footer from "../../components/Footer/";
 import AuthForm from "../../components/AuthForm/";
 import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
@@ -54,7 +53,6 @@ const Register = function () {
         </p>
       </AuthForm>
       <ViewInfo />
-      <Footer />
       {!isFido2Supported && <Modal />}
       <Dots className={style["dots-left"]} />
       <Dots className={style["dots-right"]} />

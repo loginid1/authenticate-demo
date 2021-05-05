@@ -8,6 +8,9 @@ import Login from "./views/Login/";
 import Logout from "./views/Logout/";
 import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
+import PushComplete from "./views/PushComplete/";
+import ChooseAuth from "./views/ChooseAuth/";
+import Footer from "./components/Footer/";
 
 function App() {
   return (
@@ -19,6 +22,12 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/test">
+            <ChooseAuth />
+          </Route>
+          <Route path="/authenticate/complete/push">
+            <PushComplete />
           </Route>
           <Route path="/authenticate/:request">
             <PushAdd />
@@ -39,6 +48,7 @@ function App() {
             <Register />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </UserProvider>
   );

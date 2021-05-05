@@ -1,0 +1,36 @@
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.items > div {
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.title {
+  color: var(--main-color);
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.form {
+  max-width: fit-content;
+  padding: 0;
+}
+
+.info {
+  margin: 0 auto 2em;
+  max-width: 350px;
+}
+
+@media (min-width: 600px) {
+  .items > div {
+    margin-right: 1em;
+  }
+
+  .form {
+    padding: 2.5em;
+  }
+}

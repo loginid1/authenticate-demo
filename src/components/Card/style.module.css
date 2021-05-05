@@ -1,0 +1,33 @@
+.card {
+  max-width: 314px;
+  width: 100%;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 20%);
+}
+
+.left {
+  background: var(--main-color);
+  min-width: 105px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  transition: background 0.4s ease-in;
+}
+
+.card:hover .left {
+  background: var(--darker-main-color);
+}
+
+.right {
+  background: var(--secondary-color);
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}

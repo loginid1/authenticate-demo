@@ -7,7 +7,6 @@ import registerStyle from "../Register/style.module.css";
 import AuthForm from "../../components/AuthForm/";
 import Shortcodes from "../../components/Shortcode/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
-import ViewInfo from "../../components/VisitInfo/";
 import Button from "../../components/Button/";
 import { useBody } from "../../hooks/body";
 import { useUserState } from "../../contexts/User";
@@ -98,7 +97,6 @@ const Codes = function ({ locked }) {
           </div>
         )}
       </AuthForm>
-      <ViewInfo colored />
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />
     </div>

@@ -11,13 +11,13 @@
   padding: 10px 20px;
   cursor: pointer;
   display: block;
-  transition: background 0.3s;
+  transition: background 0.4s ease-in;
 }
 
 .button:hover,
 .smallbutton:hover,
 .imagebutton:hover {
-  background: var(--lighter-main-color);
+  background: var(--darker-main-color);
 }
 
 .smallbutton {
