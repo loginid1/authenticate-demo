@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import style from "./style.module.css";
 import registerStyle from "../Register/style.module.css";
 
@@ -8,6 +8,7 @@ import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
 import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal";
+import Loader from "../../components/Loader/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
@@ -15,6 +16,7 @@ import { useBody } from "../../hooks/body";
 
 const Login = function () {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
   const { loginUser } = useUserState();
@@ -25,12 +27,14 @@ const Login = function () {
   };
   const handleLogin = async () => {
     try {
+      setLoading(true);
       const { user, username } = await dw.login(email);
       loginUser({ ...user, username });
       history.replace("/dashboard");
     } catch (e) {
       //modal maybe
       console.log(e);
+      setLoading(false);
       alert(e.message);
     }
   };
@@ -48,13 +52,14 @@ const Login = function () {
         <FingerprintButton text="Login" onClick={handleLogin} />
         <p className={registerStyle.member}>
           Not a Member?{" "}
-          <a href="/register" className={registerStyle.link}>
+          <Link to="/register" className={registerStyle.link}>
             Register
-          </a>
+          </Link>
         </p>
       </AuthForm>
       <ViewInfo colored />
       {!isFido2Supported && <Modal />}
+      {loading && <Loader loading={loading} />}
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />
     </div>

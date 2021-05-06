@@ -10,6 +10,7 @@ import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
 import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal";
+import Loader from "../../components/Loader/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 
 import { useUserState } from "../../contexts/User";
@@ -22,6 +23,7 @@ const messageGrant = "Login to verify your new device.";
 
 const Login = function () {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const params = useParams();
   const [isFido2Supported, dw] = useDirectweb();
@@ -34,9 +36,11 @@ const Login = function () {
   const handleLogin = async () => {
     try {
       //might need to refractor
+      setLoading(true);
       const { assertion_payload } = await loginid.initAuthenticate(email);
       if (assertion_payload.allowCredentials.length === 0) {
         console.log("not allowed");
+        setLoading(false);
         return;
       }
 
@@ -49,9 +53,11 @@ const Login = function () {
         loginUser({ ...user, username });
         history.replace("/code/allow");
       } else {
+        setLoading(false);
         throw new Error("Authentication not allowed");
       }
     } catch (e) {
+      setLoading(false);
       console.log(e);
     }
   };
@@ -78,6 +84,7 @@ const Login = function () {
       {!isFido2Supported && <Modal />}
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />
+      <Loader loading={loading} />
     </div>
   );
 };

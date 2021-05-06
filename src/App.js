@@ -10,6 +10,7 @@ import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
 import PushComplete from "./views/PushComplete/";
 import ChooseAuth from "./views/ChooseAuth/";
+import NotFound from "./views/404/";
 import Footer from "./components/Footer/";
 
 function App() {
@@ -44,8 +45,8 @@ function App() {
           <PrivateRoute path="/dashboard">
             <Logout />
           </PrivateRoute>
-          <Route path="/">
-            <Register />
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
         <Footer />

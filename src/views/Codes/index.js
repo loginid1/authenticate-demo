@@ -5,6 +5,7 @@ import loginStyle from "../Login/style.module.css";
 import registerStyle from "../Register/style.module.css";
 
 import AuthForm from "../../components/AuthForm/";
+import Loader from "../../components/Loader/";
 import Shortcodes from "../../components/Shortcode/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import Button from "../../components/Button/";
@@ -21,6 +22,7 @@ const messageGrant = "Enter PIN to verify your new device.";
 
 const Codes = function ({ locked }) {
   const [codes, setCodes] = useState(["-", "-", "-", "-", "-", "-"]);
+  const [loading, setLoading] = useState(false);
   const { tempUser, user } = useUserState();
   const history = useHistory();
   useBody();
@@ -60,13 +62,16 @@ const Codes = function ({ locked }) {
 
     try {
       const code = codes.join("");
-      console.log(code);
+      setLoading(true);
       const { is_authorized } = await allowCode(user, code);
       if (is_authorized) {
         //go to page
+        return history.replace("/authenticate/complete/push");
       }
+      setLoading(false);
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
 
@@ -97,6 +102,7 @@ const Codes = function ({ locked }) {
           </div>
         )}
       </AuthForm>
+      {loading && <Loader loading={loading} />}
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />
     </div>

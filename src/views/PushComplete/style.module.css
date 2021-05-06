@@ -1,6 +1,7 @@
 .circle {
   margin: 0 auto 1em;
   position: relative;
+  animation: scale-in 0.3s cubic-bezier(0.34, 0.01, 0.18, 1.84);
 }
 
 .checkmark {
@@ -19,5 +20,15 @@
 @media (min-width: 420px) {
   .info {
     font-weight: normal;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

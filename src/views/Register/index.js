@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import style from "./style.module.css";
 
 import AuthForm from "../../components/AuthForm/";
@@ -7,6 +7,7 @@ import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
 import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal/";
+import Loader from "../../components/Loader/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots.svg";
 import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
@@ -14,6 +15,7 @@ import { useBody } from "../../hooks/body";
 
 const Register = function () {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
   const { loginUser } = useUserState();
@@ -24,13 +26,14 @@ const Register = function () {
   };
   const handleRegister = async () => {
     try {
+      setLoading(true);
       const { user, username } = await dw.register(email);
       loginUser({ ...user, username });
       history.replace("/dashboard");
     } catch (e) {
       //handle error here
+      setLoading(false);
       console.log(e);
-      alert(e.message);
     }
   };
 
@@ -47,13 +50,14 @@ const Register = function () {
         <FingerprintButton text="Create Account" onClick={handleRegister} />
         <p className={style.member}>
           Already a Member?{" "}
-          <a href="/login" className={style.link}>
+          <Link to="/login" className={style.link}>
             Login
-          </a>
+          </Link>
         </p>
       </AuthForm>
       <ViewInfo />
       {!isFido2Supported && <Modal />}
+      {loading && <Loader loading={loading} />}
       <Dots className={style["dots-left"]} />
       <Dots className={style["dots-right"]} />
     </div>

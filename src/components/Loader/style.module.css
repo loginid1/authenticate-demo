@@ -1,0 +1,51 @@
+.loader,
+.reverse {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 0.3s ease;
+}
+
+.reverse {
+  animation: fade-out 0.3s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
