@@ -14,7 +14,7 @@ const Header = function () {
   const handleLogout = () => {
     //change this to directory
     logoutUser();
-    history.replace("/register");
+    history.replace("/login");
   };
 
   return (
