@@ -1,6 +1,7 @@
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
-const nativeUrl = "https://loginid-demo-services.herokuapp.com";
+const nativeUrl =
+  "https://zpvh1d1z4c.execute-api.us-east-1.amazonaws.com/latest";
 
 const request = async (
   url,
