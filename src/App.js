@@ -18,6 +18,9 @@ function App() {
     <UserProvider>
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
           <Route path="/register">
             <Register />
           </Route>
