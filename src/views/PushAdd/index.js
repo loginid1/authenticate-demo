@@ -42,7 +42,6 @@ const Login = function () {
       setLoading(true);
       const { assertion_payload } = await loginid.initAuthenticate(email);
       if (assertion_payload.allowCredentials.length === 0) {
-        console.log("not allowed");
         setError("Credentials not found.");
         setLoading(false);
         return;
