@@ -12,7 +12,6 @@ const Header = function () {
   const { logoutUser } = useUserState();
 
   const handleLogout = () => {
-    //change this to directory
     logoutUser();
     history.replace("/login");
   };
