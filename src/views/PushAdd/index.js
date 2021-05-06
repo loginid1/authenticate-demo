@@ -10,12 +10,14 @@ import ViewInfo from "../../components/VisitInfo/";
 import Input from "../../components/Input/";
 import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal";
+import Toast from "../../components/Toast/";
 import Loader from "../../components/Loader/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 
 import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
 import { useBody } from "../../hooks/body";
+import { useDelay } from "../../hooks/delay";
 import loginid from "../../services/loginid";
 
 const messageRequest = "Let's login securely.";
@@ -24,6 +26,7 @@ const messageGrant = "Login to verify your new device.";
 const Login = function () {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useDelay("");
   const history = useHistory();
   const params = useParams();
   const [isFido2Supported, dw] = useDirectweb();
@@ -40,6 +43,7 @@ const Login = function () {
       const { assertion_payload } = await loginid.initAuthenticate(email);
       if (assertion_payload.allowCredentials.length === 0) {
         console.log("not allowed");
+        setError("Credentials not found.");
         setLoading(false);
         return;
       }
@@ -54,11 +58,12 @@ const Login = function () {
         history.replace("/code/allow");
       } else {
         setLoading(false);
-        throw new Error("Authentication not allowed");
+        setError("Authentication not allowed");
       }
     } catch (e) {
       setLoading(false);
       console.log(e);
+      setError(e.message);
     }
   };
 
@@ -82,6 +87,7 @@ const Login = function () {
       <ViewInfo colored />
       <Footer />
       {!isFido2Supported && <Modal />}
+      {error && <Toast message={error} />}
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />
       <Loader loading={loading} />

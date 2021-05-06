@@ -3,9 +3,9 @@ import { Redirect, Route } from "react-router-dom";
 import { useUserState } from "../../contexts/User";
 
 const PrivateRoute = function ({ path, children }) {
-  const { userExists } = useUserState();
-  return !userExists() ? (
-    <Redirect to="/register" />
+  const { user } = useUserState();
+  return !user ? (
+    <Redirect to="/login" />
   ) : (
     <Route path={path}>{children}</Route>
   );

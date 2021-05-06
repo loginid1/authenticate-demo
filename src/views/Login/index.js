@@ -9,14 +9,17 @@ import Input from "../../components/Input/";
 import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal";
 import Loader from "../../components/Loader/";
+import Toast from "../../components/Toast/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
 import { useBody } from "../../hooks/body";
+import { useDelay } from "../../hooks/delay";
 
 const Login = function () {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useDelay("");
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
   const { loginUser } = useUserState();
@@ -35,7 +38,7 @@ const Login = function () {
       //modal maybe
       console.log(e);
       setLoading(false);
-      alert(e.message);
+      setError(e.message);
     }
   };
 
@@ -59,6 +62,7 @@ const Login = function () {
       </AuthForm>
       <ViewInfo colored />
       {!isFido2Supported && <Modal />}
+      {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}
       <Dots className={registerStyle["dots-left"]} />
       <Dots className={registerStyle["dots-right"]} />

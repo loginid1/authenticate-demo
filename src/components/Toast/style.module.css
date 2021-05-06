@@ -1,0 +1,50 @@
+.toast,
+.close {
+  position: fixed;
+  top: 50px;
+  width: fit-content;
+  padding: 20px;
+  height: 60px;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  transition: opacity 0.2s ease-out;
+  animation: in 0.2s ease-out;
+}
+
+.close {
+  opacity: 0;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+}
+
+.inner svg {
+  margin-right: 10px;
+}
+
+@keyframes in {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes out {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+  }
+}
