@@ -2,7 +2,6 @@
 .close {
   position: fixed;
   top: 50px;
-  width: fit-content;
   padding: 20px;
   height: 60px;
   background: var(--secondary-color);
