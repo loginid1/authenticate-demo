@@ -5,6 +5,7 @@ export const useBody = function (isHidden = true) {
   useEffect(() => {
     if (isHidden) {
       body.style.overflow = "hidden";
+      body.style.touchAction = "none";
     } else {
       body.style.overflow = "auto";
     }
