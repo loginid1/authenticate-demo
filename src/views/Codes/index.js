@@ -26,7 +26,7 @@ const Codes = function ({ locked }) {
   const [codes, setCodes] = useState(["-", "-", "-", "-", "-", "-"]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useDelay("");
-  const { tempUser, user } = useUserState();
+  const { tempUser, user, loginUser } = useUserState();
   const history = useHistory();
   useBody();
 
@@ -53,12 +53,19 @@ const Codes = function ({ locked }) {
     try {
       const { code } = await generateCode(tempUser);
       setCodes(String(code).split(""));
-      const result = await waitForAuthentication(tempUser.username, code);
+      const { is_authenticated } = await waitForAuthentication(
+        tempUser.username,
+        code
+      );
+      if (is_authenticated) {
+        loginUser(tempUser);
+        history.replace("/dashboard");
+      }
     } catch (e) {
       console.log(e);
       setError(e.message);
     }
-  }, [tempUser, setError]);
+  }, [tempUser, setError, history, loginUser, user]);
 
   const handleAllowCode = async () => {
     const isValid = codes.every((code) => code && !isNaN(Number(code)));
@@ -67,9 +74,10 @@ const Codes = function ({ locked }) {
     try {
       const code = codes.join("");
       setLoading(true);
-      const { is_authorized } = await allowCode(user, code);
+      const data = await allowCode(user, code);
+      console.log(data);
+      const { is_authorized } = data;
       if (is_authorized) {
-        //go to page
         return history.replace("/authenticate/complete/push");
       }
       setLoading(false);
