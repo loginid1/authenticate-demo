@@ -47,17 +47,14 @@ const Login = function () {
         return;
       }
 
-      if (params.request === "request") {
+      if (params.auth === "request") {
         const { username, id } = await loginid.retrieveUser(email);
         setTempUser({ username, id, access: "generate" });
-        history.replace("/code/generate");
-      } else if (params.request === "grant") {
+        history.replace("/authenticate");
+      } else {
         const { user, username } = await dw.login(email);
         loginUser({ ...user, username });
         history.replace("/code/allow");
-      } else {
-        setLoading(false);
-        setError("Authentication not allowed");
       }
     } catch (e) {
       setLoading(false);

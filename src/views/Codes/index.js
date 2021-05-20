@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import style from "./style.module.css";
 import loginStyle from "../Login/style.module.css";
 import registerStyle from "../Register/style.module.css";
@@ -65,7 +65,7 @@ const Codes = function ({ locked }) {
       console.log(e);
       setError(e.message);
     }
-  }, [tempUser, setError, history, loginUser, user]);
+  }, [tempUser, setError, history, loginUser]);
 
   const handleAllowCode = async () => {
     const isValid = codes.every((code) => code && !isNaN(Number(code)));

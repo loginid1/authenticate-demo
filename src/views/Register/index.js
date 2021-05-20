@@ -21,7 +21,7 @@ const Register = function () {
   const [error, setError] = useDelay("");
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
-  const { loginUser } = useUserState();
+  const { registerUser } = useUserState();
   useBody();
 
   const handleEmail = (event) => {
@@ -31,7 +31,7 @@ const Register = function () {
     try {
       setLoading(true);
       const { user, username } = await dw.register(email);
-      loginUser({ ...user, username });
+      registerUser({ ...user, username });
       history.replace("/dashboard");
     } catch (e) {
       //handle error here

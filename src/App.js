@@ -27,19 +27,16 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/test">
+          <PrivateTemp exact path="/authenticate">
             <ChooseAuth />
-          </Route>
+          </PrivateTemp>
           <Route path="/authenticate/complete/push">
             <PushComplete />
           </Route>
-          <Route path="/authenticate/:request">
+          <Route path="/authenticate/:auth(request|grant)">
             <PushAdd />
           </Route>
-          <Route path="/authenticate/:grant">
-            <PushAdd />
-          </Route>
-          <PrivateTemp path="/code/generate">
+          <PrivateTemp path="/code/generate/:auth(push|add)">
             <Codes locked />
           </PrivateTemp>
           <PrivateRoute path="/code/allow">

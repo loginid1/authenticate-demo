@@ -17,10 +17,19 @@ export const UserProvider = function ({ children }) {
   const logoutUser = () => {
     setUser(null);
   };
+  const registerUser = (user) => {
+    localStorage.setItem("username", JSON.stringify(user.username));
+    setUser(user);
+  };
+  const getLastUser = () => {
+    return JSON.parse(localStorage.getItem("username")) || "";
+  };
 
   const fns = {
+    registerUser,
     loginUser,
     logoutUser,
+    getLastUser,
     user,
     tempUser,
     setTempUser,
