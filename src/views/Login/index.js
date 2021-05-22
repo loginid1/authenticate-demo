@@ -41,7 +41,6 @@ const Login = function () {
       loginUser({ ...user, username });
       history.replace("/dashboard");
     } catch (e) {
-      //modal maybe
       setLoading(false);
       if (e.message === navigatorError) {
         setMessage(secondDeviceMessage);
@@ -71,14 +70,14 @@ const Login = function () {
         <WordLink
           info="Need to enter a code?"
           link="Click Here"
-          to="/authenticate/request"
+          to="/authenticate/grant"
         />
       </AuthForm>
       <ViewInfo colored />
       {!isFido2Supported && <Modal />}
       {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}
-      {message && (
+      {true && (
         <ToastOption
           message={message}
           option="Click Here"

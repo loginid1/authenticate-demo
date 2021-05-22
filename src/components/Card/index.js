@@ -11,4 +11,12 @@ const Card = function ({ onClick, children }) {
   );
 };
 
+export const CustomCard = function ({ children, ...rest }) {
+  return (
+    <div className={style.customCard} {...rest}>
+      {children}
+    </div>
+  );
+};
+
 export default Card;

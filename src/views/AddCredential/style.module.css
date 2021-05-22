@@ -1,0 +1,50 @@
+.dots {
+  z-index: -1;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  margin: 5em auto 0;
+  width: 100%;
+  max-width: 520px;
+  padding: 20px;
+  background: var(--gray);
+  display: flex;
+  flex-direction: column;
+}
+
+.center button {
+  margin: 2em auto;
+}
+
+.title {
+  font-weight: normal;
+  font-size: 2em;
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.info svg {
+  margin-right: 1em;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.success {
+  position: relative;
+}

@@ -14,6 +14,8 @@ import { useBody } from "../../hooks/body";
 import { useUserState } from "../../contexts/User";
 import { useDelay } from "../../hooks/delay";
 import {
+  PURPOSE,
+  retrieveUser,
   generateCode,
   allowCode,
   waitForAuthentication,
@@ -28,13 +30,14 @@ const Codes = function ({ locked }) {
   const [error, setError] = useDelay("");
   const { tempUser, user, loginUser } = useUserState();
   const history = useHistory();
+  const params = useParams();
   useBody();
 
   const handleInput = (index) => (event) => {
     let number = event.currentTarget.value;
     if (locked || isNaN(Number(number))) return;
 
-    const codesCp = [...codes];
+    let codesCp = [...codes];
     const nextSibling = event.currentTarget.nextSibling;
 
     if (number.length > 1) {
@@ -42,48 +45,77 @@ const Codes = function ({ locked }) {
     }
 
     codesCp[index] = number;
+    //Makes sure there are no string code boxes
+    codesCp = codesCp.map((val) => (val === " " || val === "" ? "-" : val));
 
     if (nextSibling && number) {
+      if (codesCp[index + 1] === "-") {
+        codesCp[index + 1] = " ";
+      }
       nextSibling.focus();
     }
+
     setCodes(codesCp);
   };
 
   const handleGetCodes = useCallback(async () => {
     try {
-      const { code } = await generateCode(tempUser);
+      const type = params.auth;
+      // get user info
+      const user = await retrieveUser(tempUser.username);
+      //determine if push or add auth
+      const { code } = await generateCode(user, PURPOSE.push);
+      let addCode;
       setCodes(String(code).split(""));
+
+      if (type === "add") {
+        addCode = (await generateCode(user, PURPOSE.add)).code;
+      }
+
+      //wait for code to be allowed on other device
       const { is_authenticated } = await waitForAuthentication(
-        tempUser.username,
+        user.username,
         code
       );
+
       if (is_authenticated) {
-        loginUser(tempUser);
+        if (type === "add") {
+          const { is_authorized } = await allowCode(user, addCode, PURPOSE.add);
+
+          if (is_authorized) {
+            loginUser({ ...user, addAuth: { code: addCode, type: "short" } });
+            return history.replace("/credentials/add");
+          }
+        }
+
+        loginUser(user);
         history.replace("/dashboard");
       }
     } catch (e) {
       console.log(e);
       setError(e.message);
     }
-  }, [tempUser, setError, history, loginUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleAllowCode = async () => {
     const isValid = codes.every((code) => code && !isNaN(Number(code)));
     if (!isValid) return;
 
     try {
-      const code = codes.join("");
       setLoading(true);
-      const data = await allowCode(user, code);
-      console.log(data);
+
+      const code = codes.join("");
+      const data = await allowCode(user, code, PURPOSE.push);
       const { is_authorized } = data;
+
       if (is_authorized) {
-        return history.replace("/authenticate/complete/push");
+        return history.replace("/authenticate/complete");
       }
+
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      console.log(e);
       setError(e.message);
     }
   };

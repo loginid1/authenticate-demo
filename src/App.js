@@ -10,6 +10,7 @@ import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
 import PushComplete from "./views/PushComplete/";
 import ChooseAuth from "./views/ChooseAuth/";
+import AddCredential from "./views/AddCredential/";
 import NotFound from "./views/404/";
 import Footer from "./components/Footer/";
 
@@ -30,10 +31,10 @@ function App() {
           <PrivateTemp exact path="/authenticate">
             <ChooseAuth />
           </PrivateTemp>
-          <Route path="/authenticate/complete/push">
+          <Route path="/authenticate/complete">
             <PushComplete />
           </Route>
-          <Route path="/authenticate/:auth(request|grant)">
+          <Route exact path="/authenticate/grant">
             <PushAdd />
           </Route>
           <PrivateTemp path="/code/generate/:auth(push|add)">
@@ -41,6 +42,12 @@ function App() {
           </PrivateTemp>
           <PrivateRoute path="/code/allow">
             <Codes />
+          </PrivateRoute>
+          <PrivateRoute exact path="/credentials">
+            <AddCredential />
+          </PrivateRoute>
+          <PrivateRoute exact path="/credentials/add">
+            <AddCredential />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Logout />

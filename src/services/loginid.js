@@ -17,6 +17,11 @@ const request = async (
   return data;
 };
 
+export const PURPOSE = {
+  push: "temporary_authentication",
+  add: "add_credential",
+};
+
 export const initAuthenticate = async (username) => {
   return await request(`${baseUrl}/authenticate/fido2/init`, {
     body: { client_id: apiKey, username },
@@ -39,13 +44,27 @@ export const retrieveUser = async (username) => {
   });
 };
 
-export const generateCode = async (user) => {
-  return await request(`${nativeUrl}/codes/short/generate`, { body: { user } });
+export const generateCode = async (user, purpose) => {
+  return await request(`${nativeUrl}/codes/short/generate`, {
+    body: { user, purpose },
+  });
 };
 
-export const allowCode = async (user, code) => {
+export const allowCode = async (user, code, purpose) => {
   return await request(`${nativeUrl}/codes/short/allow`, {
-    body: { user, code },
+    body: { user, code, purpose },
+  });
+};
+
+export const credentialsInit = async (user, code, type) => {
+  return await request(`${nativeUrl}/credentials/init`, {
+    body: { user, code, type },
+  });
+};
+
+export const credentialsComplete = async (attestationPayload) => {
+  return await request(`${baseUrl}/api/native/credentials/fido2/complete`, {
+    body: { ...attestationPayload },
   });
 };
 
@@ -55,6 +74,8 @@ const allrequests = {
   retrieveUser,
   generateCode,
   allowCode,
+  credentialsInit,
+  credentialsComplete,
 };
 
 export default allrequests;

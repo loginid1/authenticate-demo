@@ -14,14 +14,15 @@ import { useBody } from "../../hooks/body";
 import { useUserState } from "../../contexts/User";
 
 const Complete = function () {
+  useBody();
   const history = useHistory();
   const { logoutUser } = useUserState();
-  useBody();
 
   const handleComplete = () => {
     logoutUser();
     history.replace("/login");
   };
+
   return (
     <div className={`${registerStyle.app} ${loginStyle.app}`}>
       <AuthForm className={codeStyle.form}>
