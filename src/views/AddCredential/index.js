@@ -67,6 +67,7 @@ const AddCredential = function ({ addingCredential = false }) {
         },
       };
 
+      await credentialsComplete(completePayload);
       history.replace("/credentials");
     } catch (e) {
       setLoading(false);
