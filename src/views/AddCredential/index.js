@@ -62,9 +62,11 @@ const AddCredential = function ({ addingCredential = false }) {
           client_data: bufferToBase64(response.clientDataJSON),
           attestation_data: bufferToBase64(response.attestationObject),
         },
+        options: {
+          credential_name: `${platform.os.family} (${platform.name})`,
+        },
       };
 
-      await credentialsComplete(completePayload);
       history.replace("/credentials");
     } catch (e) {
       setLoading(false);
