@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import platform from "platform";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import registerStyle from "../Register/style.module.css";
@@ -12,22 +13,25 @@ import OSImage from "../../components/OSImage/";
 import { FingerprintButton } from "../../components/Button/";
 import Loader from "../../components/Loader/";
 import { ReactComponent as GrayCircle } from "../../imgs/circle_gray.svg";
+import { ReactComponent as GreenCircle } from "../../imgs/circle_green.svg";
 import { ReactComponent as Checkmark } from "../../imgs/checkmark.svg";
 
-import { credentialsInit, credentialsComplete } from "../../services/loginid";
-import { useFindPlatform } from "../../hooks/platforms";
 import { useUserState } from "../../contexts/User";
 import { useDelay } from "../../hooks/delay";
 import { base64ToBuffer, bufferToBase64 } from "../../utils/crypto";
+import {
+  credentialsInit,
+  credentialsComplete,
+  credentialsList,
+} from "../../services/loginid";
 
-const AddCredential = function () {
+const AddCredential = function ({ addingCredential = false }) {
   useBody();
-  const os = useFindPlatform();
   const { user } = useUserState();
   const [error, setError] = useDelay("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [list, setList] = useState([]);
   const history = useHistory();
-  const osAndVersion = navigator.appVersion.split(";")[0].split("(")[1];
 
   const addCredentialHandler = async () => {
     try {
@@ -68,22 +72,52 @@ const AddCredential = function () {
     }
   };
 
+  useEffect(() => {
+    const init = async () => {
+      if (addingCredential) {
+        const osAndVersion = `${platform.os.family} (${platform.name})`;
+        const item = { name: osAndVersion, added: false };
+
+        setLoading(false);
+        setList([item]);
+      } else {
+        let { credentials } = await credentialsList(user.id);
+        credentials = credentials.map(({ name }) => ({
+          name: name.split("-")[0].trim(),
+          added: true,
+        }));
+
+        setLoading(false);
+        setList(credentials);
+      }
+    };
+    init();
+  }, [user.id, addingCredential]);
+
   return (
     <div className={style.main}>
       <Header />
       <div className={style.center}>
-        <h1 className={style.title}>Add your new device</h1>
-        <CustomCard>
-          <div className={style.info}>
-            <OSImage os={os} width="50px" height="60px" />
-            <p>{osAndVersion}</p>
-          </div>
-          <div className={style.success}>
-            <GrayCircle />
-            <Checkmark className={style.checkmark} />
-          </div>
-        </CustomCard>
-        <FingerprintButton text="Add Device" onClick={addCredentialHandler} />
+        <h1 className={style.title}>
+          {addingCredential ? "Add Your New Device" : "Your Devices"}
+        </h1>
+        {list.map(({ name, added }, index) => {
+          return (
+            <CustomCard key={index}>
+              <div className={style.info}>
+                <OSImage os={name} width="50px" height="60px" />
+                <p>{name}</p>
+              </div>
+              <div className={style.success}>
+                {added ? <GreenCircle /> : <GrayCircle />}
+                <Checkmark className={style.checkmark} />
+              </div>
+            </CustomCard>
+          );
+        })}
+        {addingCredential && (
+          <FingerprintButton text="Add Device" onClick={addCredentialHandler} />
+        )}
       </div>
       {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}

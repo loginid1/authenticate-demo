@@ -4,14 +4,13 @@ import { ReactComponent as Windows } from "../../imgs/windows.svg";
 import { ReactComponent as Apple } from "../../imgs/apple-logo.svg";
 import { ReactComponent as Android } from "../../imgs/android.svg";
 import { ReactComponent as Device } from "../../imgs/devices.svg";
-import { PLATFORMS } from "../../hooks/platforms";
 
 const AddCredential = function ({ os, ...props }) {
-  return os === PLATFORMS.WINDOWS ? (
+  return os.includes("Win") ? (
     <Windows {...props} />
-  ) : os === PLATFORMS.APPLE ? (
+  ) : os.includes("iPhone") || os.includes("Mac") || os.includes("iPad") ? (
     <Apple {...props} />
-  ) : os === PLATFORMS.ANDROID ? (
+  ) : os.includes("Android") ? (
     <Android {...props} />
   ) : (
     <Device {...props} />

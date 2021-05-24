@@ -10,7 +10,7 @@ const request = async (
   const res = await fetch(url, {
     method,
     headers: { "Content-Type": "application/json", ...headers },
-    body: JSON.stringify(body),
+    ...(method !== "GET" && { body: JSON.stringify(body) }),
   });
   const data = await res.json();
   if (!res.ok) throw data;
@@ -68,12 +68,19 @@ export const credentialsComplete = async (attestationPayload) => {
   });
 };
 
+export const credentialsList = async (userId) => {
+  return await request(`${nativeUrl}/credentials?user_id=${userId}`, {
+    method: "GET",
+  });
+};
+
 const allrequests = {
   initAuthenticate,
   waitForAuthentication,
   retrieveUser,
   generateCode,
   allowCode,
+  credentialsList,
   credentialsInit,
   credentialsComplete,
 };

@@ -47,7 +47,7 @@ function App() {
             <AddCredential />
           </PrivateRoute>
           <PrivateRoute exact path="/credentials/add">
-            <AddCredential />
+            <AddCredential addingCredential />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Logout />

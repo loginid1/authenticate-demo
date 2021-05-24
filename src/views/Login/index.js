@@ -44,7 +44,7 @@ const Login = function () {
       setLoading(false);
       if (e.message === navigatorError) {
         setMessage(secondDeviceMessage);
-      } else {
+      } else if (e.message) {
         setError(e.message);
       }
     }
@@ -77,7 +77,7 @@ const Login = function () {
       {!isFido2Supported && <Modal />}
       {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}
-      {true && (
+      {message && (
         <ToastOption
           message={message}
           option="Click Here"
