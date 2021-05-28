@@ -25,6 +25,12 @@ button {
   background: var(--gray);
 }
 
+@media (min-width: 916px) {
+  .accounts > div:not(:last-child) {
+    margin-right: 0.8em;
+  }
+}
+
 .button {
   width: 100%;
   background: var(--gray);

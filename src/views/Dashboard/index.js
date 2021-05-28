@@ -9,7 +9,7 @@ import Button from "../../components/Button/";
 import { useUserState } from "../../contexts/User";
 import { useBody } from "../../hooks/body";
 
-const Logout = function () {
+const Dashboard = function () {
   const history = useHistory();
   const { logoutUser } = useUserState();
   useBody(false);
@@ -47,4 +47,4 @@ const Logout = function () {
   );
 };
 
-export default Logout;
+export default Dashboard;

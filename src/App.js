@@ -5,7 +5,7 @@ import { UserProvider } from "./contexts/User";
 import PrivateRoute, { PrivateTemp } from "./components/PrivateRoute/";
 import Register from "./views/Register/";
 import Login from "./views/Login/";
-import Logout from "./views/Logout/";
+import Dashboard from "./views/Dashboard/";
 import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
 import PushComplete from "./views/PushComplete/";
@@ -50,7 +50,7 @@ function App() {
             <AddCredential addingCredential />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
-            <Logout />
+            <Dashboard />
           </PrivateRoute>
           <Route path="*">
             <NotFound />
