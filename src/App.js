@@ -25,39 +25,49 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+            <Footer />
           </Route>
           <Route path="/login">
             <Login />
+            <Footer />
           </Route>
           <PrivateTemp exact path="/authenticate">
             <ChooseAuth />
+            <Footer />
           </PrivateTemp>
           <Route path="/authenticate/complete">
             <PushComplete />
+            <Footer />
           </Route>
           <Route exact path="/authenticate/grant">
             <PushAdd />
+            <Footer />
           </Route>
           <PrivateTemp path="/code/generate/:auth(push|add)">
             <Codes locked />
+            <Footer />
           </PrivateTemp>
           <PrivateRoute path="/code/allow">
             <Codes />
+            <Footer />
           </PrivateRoute>
           <PrivateRoute exact path="/credentials">
             <AddCredential />
+            <Footer />
           </PrivateRoute>
           <PrivateRoute exact path="/credentials/add">
             <AddCredential addingCredential />
+            <Footer />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Dashboard />
+            <Footer />
           </PrivateRoute>
           <Route path="*">
             <NotFound />
+            <Footer />
           </Route>
         </Switch>
-        <Footer />
       </Router>
     </UserProvider>
   );
