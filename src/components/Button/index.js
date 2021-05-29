@@ -11,9 +11,12 @@ const Button = function ({ text, ...props }) {
   );
 };
 
-export const SmallButton = function ({ text, ...props }) {
+export const SmallButton = function ({ text, secondary, ...props }) {
   return (
-    <button className={style.smallbutton} {...props}>
+    <button
+      className={!secondary ? style.smallbutton : style.whiteButton}
+      {...props}
+    >
       {text}
     </button>
   );

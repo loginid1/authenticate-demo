@@ -13,16 +13,15 @@
 .dots-left,
 .dots-right {
   position: absolute;
+  z-index: 0;
 }
 
 .dots-left {
-  z-index: 0;
   bottom: -100px;
   left: -100px;
 }
 
 .dots-right {
-  z-index: 0;
   top: -100px;
   right: -100px;
 }

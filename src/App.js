@@ -6,6 +6,7 @@ import PrivateRoute, { PrivateTemp } from "./components/PrivateRoute/";
 import Register from "./views/Register/";
 import Login from "./views/Login/";
 import Dashboard from "./views/Dashboard/";
+import Balance from "./views/Balance/";
 import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
 import PushComplete from "./views/PushComplete/";
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Login />
+            <Balance />
           </Route>
           <Route path="/register">
             <Register />

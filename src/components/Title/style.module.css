@@ -1,0 +1,14 @@
+.title {
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+@media (min-width: 481px) {
+  .title {
+    font-weight: normal;
+    font-size: 2em;
+  }
+}

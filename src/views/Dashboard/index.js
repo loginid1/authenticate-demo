@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
 import Header from "../../components/Header/";
+import Title from "../../components/Title/";
 import Footer from "../../components/Footer/";
 import Account from "../../components/Account/";
 import Button from "../../components/Button/";
@@ -23,7 +24,7 @@ const Dashboard = function () {
   return (
     <div className={style.app}>
       <Header />
-      <h1 className={style.title}>My Accounts</h1>
+      <Title>My Accounts</Title>
       <div className={style.accounts}>
         <Account
           type="Banking"
