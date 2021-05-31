@@ -1,0 +1,151 @@
+.wrapper {
+  max-width: 1064px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.group {
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2em;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: var(--secondary-color);
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.subject,
+label {
+  display: block;
+  font-size: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+.title,
+.title1 {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.right {
+  align-self: center;
+}
+
+.extra,
+.extra1 {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 0.5em;
+}
+
+.extra1,
+.title1 {
+  font-size: 1em;
+}
+
+.amount {
+  font-size: 0.9em;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.button button {
+  margin: 0 auto;
+}
+
+.button1 button {
+  margin-top: 2em;
+  margin-left: auto;
+}
+
+.section1,
+.section2 {
+  padding: 20px;
+}
+
+.section1 {
+  background: var(--secondary-color);
+}
+
+.section2 {
+  background: rgba(3, 110, 249, 0.1);
+}
+
+.select {
+  position: relative;
+  width: 100%;
+}
+
+.select select,
+.calender select {
+  appearance: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  cursor: pointer;
+  background: var(--secondary-color) url("../../imgs/down-arrow.svg") no-repeat
+    center right 10px;
+}
+
+.calender select {
+  background: var(--secondary-color) url("../../imgs/calender.svg") no-repeat
+    center right 10px;
+  background-size: 20px 20px;
+}
+
+input,
+.select select,
+.calender select {
+  width: 100%;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  position: relative;
+}
+
+input {
+  margin: 0;
+  background: var(--secondary-color);
+  padding: 10px;
+  outline: none;
+}
+
+.image {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.split {
+  display: flex;
+}
+
+.split > *:first-child {
+  margin-right: 2em;
+}
+
+.select,
+.input {
+  flex: 1;
+  flex-basis: 0;
+}
+
+form {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  background: var(--secondary-color);
+}
+
+label {
+  margin-left: 5px;
+}

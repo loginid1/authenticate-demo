@@ -40,3 +40,8 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+fieldset {
+  border: none;
+  margin: 0;
+}

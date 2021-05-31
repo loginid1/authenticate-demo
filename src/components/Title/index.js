@@ -1,8 +1,15 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Title = function ({ children }) {
-  return <h1 className={style.title}>{children}</h1>;
+import { SmallButton } from "../Button/";
+
+const Title = function ({ children, buttonText = "" }) {
+  return (
+    <div className={style.wrapper}>
+      {buttonText && <SmallButton secondary text={buttonText} />}
+      <h1 className={style.title}>{children}</h1>
+    </div>
+  );
 };
 
 export default Title;

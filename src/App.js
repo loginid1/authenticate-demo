@@ -7,6 +7,7 @@ import Register from "./views/Register/";
 import Login from "./views/Login/";
 import Dashboard from "./views/Dashboard/";
 import Balance from "./views/Balance/";
+import Pay from "./views/Pay/";
 import PushAdd from "./views/PushAdd/";
 import Codes from "./views/Codes/";
 import PushComplete from "./views/PushComplete/";
@@ -21,7 +22,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Balance />
+            <Pay />
           </Route>
           <Route path="/register">
             <Register />

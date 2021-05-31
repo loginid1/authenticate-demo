@@ -12,11 +12,6 @@ button {
   font-size: 0.8em;
 }
 
-.header button {
-  display: none;
-  position: absolute;
-}
-
 .body {
   margin-top: 2em;
   background: var(--secondary-color);
@@ -128,10 +123,6 @@ table {
 @media (min-width: 769px) {
   .wrapper {
     font-size: 1em;
-  }
-
-  .header button {
-    display: block;
   }
 
   .totals {

@@ -38,10 +38,7 @@ const Balance = function () {
     <div>
       <Header />
       <div className={style.wrapper}>
-        <div className={style.header}>
-          <SmallButton secondary text="< Back to Accounts" />
-          <Title>My Accounts</Title>
-        </div>
+        <Title buttonText="Back to Accounts">My Accounts</Title>
         <div className={style.body}>
           <div className={style.credit}>
             <img

@@ -3,12 +3,24 @@
   font-weight: normal;
   text-align: center;
   margin-top: 1em;
+  margin-bottom: 1.5em;
   font-weight: bold;
+}
+
+.wrapper button {
+  display: none;
+  position: absolute;
 }
 
 @media (min-width: 481px) {
   .title {
     font-weight: normal;
     font-size: 2em;
+  }
+}
+
+@media (min-width: 769px) {
+  .wrapper button {
+    display: block;
   }
 }
