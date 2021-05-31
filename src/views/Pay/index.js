@@ -5,6 +5,7 @@ import { useMaxWidth } from "../../hooks/width";
 
 import Mobile from "./mobile";
 import Desktop from "./desktop";
+import TransactionModal from "../../components/TransactionModal/";
 import Header from "../../components/Header/";
 import Title from "../../components/Title/";
 
@@ -20,6 +21,7 @@ const Pay = function () {
         </div>
         {maxWidth ? <Desktop /> : <Mobile />}
       </div>
+      <TransactionModal />
     </div>
   );
 };

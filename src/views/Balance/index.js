@@ -6,18 +6,10 @@ import Header from "../../components/Header/";
 import Title from "../../components/Title/";
 import { SmallButton } from "../../components/Button/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
+import Row from "../../components/Row/";
 import creditCard from "../../imgs/credit_card.svg";
 import { useBody } from "../../hooks/body";
 import transactionData from "./data";
-
-const Row = function ({ title, value, secondary }) {
-  return (
-    <div className={style.row}>
-      <p className={secondary ? style.key : ""}>{title}</p>
-      <p className={secondary ? style.value : ""}>{value}</p>
-    </div>
-  );
-};
 
 const TransactionRow = function ({ transaction }) {
   const { date, transactionDescription, credit, balance } = transaction;

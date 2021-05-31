@@ -6,6 +6,6 @@ p {
   margin-top: 0.5em;
 }
 
-p:first-of-type {
+.spacer {
   margin-top: 1em;
 }

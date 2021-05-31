@@ -1,9 +1,29 @@
+const dateFormatter = (options) => {
+  const formatter = new Intl.DateTimeFormat("en", options);
+  return formatter.format(new Date());
+};
+
 export const currentDay = () => {
-  const formatter = new Intl.DateTimeFormat("en", {
+  return dateFormatter({
     month: "short",
     day: "numeric",
     year: "numeric",
   });
+};
 
-  return formatter.format(new Date());
+export const currentTime = () => {
+  return dateFormatter({
+    hour: "numeric",
+    minute: "numeric",
+  });
+};
+
+export const dayOfWeek = () => {
+  return dateFormatter({
+    weekday: "short",
+  });
+};
+
+export const fullCurrentDay = () => {
+  return `${dayOfWeek()} ${currentDay()} - ${currentTime()}`;
 };
