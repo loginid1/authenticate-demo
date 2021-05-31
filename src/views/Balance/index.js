@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import registerStyle from "../Register/style.module.css";
 
@@ -24,13 +25,22 @@ const TransactionRow = function ({ transaction }) {
 };
 
 const Balance = function () {
+  const history = useHistory();
   useBody();
+
+  const backToAccount = () => {
+    history.replace('/dashboard');
+  };
+
+  const toPayment = () => {
+    history.replace('/pay');
+  };
 
   return (
     <div>
       <Header />
       <div className={style.wrapper}>
-        <Title buttonText="Back to Accounts">My Accounts</Title>
+        <Title buttonText="Back to Accounts" onClick={backToAccount}>My Accounts</Title>
         <div className={style.body}>
           <div className={style.credit}>
             <img
@@ -57,7 +67,7 @@ const Balance = function () {
                 <Row title="Available Credit" value="$9,063.00" />
                 <Row title="Credit Limit" value="$10,000.00" />
               </div>
-              <SmallButton text="Make a Payment" />
+              <SmallButton onClick={toPayment} text="Make a Payment" />
             </div>
           </div>
           <table className={style.transactions}>

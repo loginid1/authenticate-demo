@@ -64,6 +64,12 @@ function App() {
             <Dashboard />
             <Footer />
           </PrivateRoute>
+          <PrivateRoute exact path="/balance">
+            <Balance />
+          </PrivateRoute>
+          <PrivateRoute exact path="/pay">
+            <Pay />
+          </PrivateRoute>
           <Route path="*">
             <NotFound />
             <Footer />

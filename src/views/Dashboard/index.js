@@ -21,6 +21,10 @@ const Dashboard = function () {
     history.replace("/login");
   };
 
+  const toBalance = () => {
+    history.replace("/balance");
+  };
+
   return (
     <div className={style.app}>
       <Header />
@@ -31,6 +35,7 @@ const Dashboard = function () {
           name="Personal Chequing"
           balance="$6,575.39"
           number="456321"
+          onClick={toBalance}
         />
         <Account
           type="Credit"

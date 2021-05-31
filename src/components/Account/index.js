@@ -9,9 +9,10 @@ const Account = function ({
   balance,
   number,
   isCreditCard = false,
+  onClick,
 }) {
   return (
-    <div className={style.account}>
+    <div onClick={onClick} className={style.account}>
       <b className={style.type}>{type}</b>
       <div className={style.card}>
         <div className={style.inner}>

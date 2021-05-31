@@ -20,7 +20,7 @@ const Option = function ({ subject, title, extra, children }) {
   );
 };
 
-const Mobile = function () {
+const Mobile = function ({buttonOnClick}) {
   return (
     <div>
       <div className={style.group}>
@@ -47,7 +47,7 @@ const Mobile = function () {
         </Option>
       </div>
       <div className={style.button}>
-        <Button text="Make a Payment" />
+        <Button onClick={buttonOnClick} text="Make a Payment" />
       </div>
     </div>
   );

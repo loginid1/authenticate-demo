@@ -18,9 +18,9 @@ const Select = function ({ subject, value, calender }) {
   );
 };
 
-const Desktop = function () {
+const Desktop = function ({submitOnClick}) {
   return (
-    <form className={style.form}>
+    <form className={style.form} onSubmit={submitOnClick}>
       <fieldset className={style.section1}>
         <div className={style.subject}>Payment To:</div>
         <div>
