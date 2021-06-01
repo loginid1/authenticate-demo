@@ -22,7 +22,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Pay />
+            <Login />
+            <Footer />
           </Route>
           <Route path="/register">
             <Register />
