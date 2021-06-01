@@ -74,6 +74,23 @@ export const credentialsList = async (userId) => {
   });
 };
 
+export const txInit = async (username, tx_payload) => {
+  return await request(`${baseUrl}/api/tx/init`, {
+    body: { 
+      client_id: apiKey, 
+      username, 
+      tx_type: "text", 
+      tx_payload 
+    }
+  });
+};
+
+export const txComplete = async (txPayload) => {
+  return await request(`${baseUrl}/api/tx/complete`, { 
+    body: { ...txPayload }
+  });
+};
+
 const allrequests = {
   initAuthenticate,
   waitForAuthentication,
@@ -83,6 +100,8 @@ const allrequests = {
   credentialsList,
   credentialsInit,
   credentialsComplete,
+  txInit,
+  txComplete,
 };
 
 export default allrequests;

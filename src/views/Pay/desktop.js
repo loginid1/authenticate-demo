@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import style from "./style.module.css";
 
 import { currentDay } from "../../utils/date";
@@ -18,7 +18,17 @@ const Select = function ({ subject, value, calender }) {
   );
 };
 
-const Desktop = function ({submitOnClick}) {
+const Desktop = function ({
+  submitOnClick, 
+  txConfirm, 
+  handleAmount,
+  amount,
+}) {
+  const [validAmount, setValidAmount] = useState(true);
+  useEffect(() => {
+    const regex = /^\$\d+(\.\d{0,2})?$/;
+    setValidAmount(regex.test(amount));
+  },[amount]);
   return (
     <form className={style.form} onSubmit={submitOnClick}>
       <fieldset className={style.section1}>
@@ -33,7 +43,8 @@ const Desktop = function ({submitOnClick}) {
           <Select subject="Account:" value="37280*****5562"></Select>
           <div className={style.input}>
             <label className={style.subject}>Amount:</label>
-            <input type="text" />
+            {!validAmount && <label>Amount is not valid</label>}
+            <input type="text" onChange={handleAmount} defaultValue={amount} />
           </div>
         </div>
       </fieldset>
@@ -43,7 +54,7 @@ const Desktop = function ({submitOnClick}) {
           <Select subject="Frequency:" value="One Time"></Select>
         </div>
         <div className={style.button1}>
-          <SmallButton text="Make a Payment" />
+          <SmallButton onClick={txConfirm} text="Make a Payment" />
         </div>
       </fieldset>
     </form>
