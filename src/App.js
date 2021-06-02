@@ -23,7 +23,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <TransactionComplete />
+            <Pay />
           </Route>
           <Route path="/register">
             <Register />

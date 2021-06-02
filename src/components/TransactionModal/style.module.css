@@ -6,13 +6,22 @@ p {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, 0);
   width: 90%;
   background: var(--secondary-color);
   z-index: 5;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   max-width: 400px;
+  transform: translate(-50%, 250px);
+  animation: appear 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.disappear {
+  transform: translate(-50%, 0);
+  animation: disappear 0.3s;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
 }
 
 .top {
@@ -56,7 +65,8 @@ p {
   margin-bottom: 0.5em;
 }
 
-.bottom {
+.bottom,
+.bottomSuccess {
   background: var(--main-color);
   width: 100%;
   padding: 20px;
@@ -64,15 +74,25 @@ p {
   align-items: center;
 }
 
-.bottom svg {
+.bottom svg,
+.bottomSuccess svg {
   width: 60px;
   height: 60px;
   margin-right: 2em;
 }
 
-.bottom div {
+.bottom div,
+.bottomSuccess div {
   font-size: 1.2em;
   color: var(--secondary-color);
+}
+
+.bottomSuccess {
+  background: var(--complete-color);
+}
+
+.checkmark {
+  animation: scale-in 0.3s cubic-bezier(0.34, 0.01, 0.18, 1.84);
 }
 
 @media (min-width: 769px) {
@@ -91,7 +111,8 @@ p {
     justify-content: center;
   }
 
-  .bottom {
+  .bottom,
+  .bottomSuccess {
     flex-grow: 1;
     flex-basis: 0;
     flex-direction: column;
@@ -100,17 +121,49 @@ p {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 6% 100%);
   }
 
-  .bottom svg {
+  .bottom svg,
+  .bottomSuccess svg {
     margin-right: 0;
     margin-bottom: 1em;
   }
 
-  .bottom > div {
+  .bottom > div,
+  .bottomSuccess > div {
     font-size: 1.9em;
     text-align: center;
   }
 
   .info {
     width: 60%;
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: translate(-50%, 250px);
+  }
+
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    transform: translate(-50%, 0);
+  }
+
+  to {
+    transform: translate(-50%, 250px);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
