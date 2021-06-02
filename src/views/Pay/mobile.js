@@ -20,7 +20,16 @@ const Option = function ({ subject, title, extra, children }) {
   );
 };
 
-const Mobile = function () {
+const Mobile = function ({
+  buttonOnClick, 
+  txConfirm,
+  amount,
+}) {
+  const handleOnClick = () => {
+    buttonOnClick();
+    txConfirm();
+  }
+
   return (
     <div>
       <div className={style.group}>
@@ -35,7 +44,7 @@ const Mobile = function () {
           <DownArrow />
         </Option>
         <Option title="Amount:">
-          <div className={style.amount}>$937.00</div>
+          <div className={style.amount}>{amount}</div>
         </Option>
       </div>
       <div className={style.group}>
@@ -47,7 +56,7 @@ const Mobile = function () {
         </Option>
       </div>
       <div className={style.button}>
-        <Button text="Make a Payment" />
+        <Button onClick={handleOnClick} text="Make a Payment" />
       </div>
     </div>
   );

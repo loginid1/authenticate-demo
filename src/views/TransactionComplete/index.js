@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
 import { currentDay } from "../../utils/date";
@@ -8,13 +9,23 @@ import { BoldRow } from "../../components/Row/";
 import Button, { SmallButton } from "../../components/Button/";
 import { ReactComponent as CheckMark } from "../../imgs/checkmark1.svg";
 
+import { useUserState } from "../../contexts/User";
+import { useTxState } from "../../contexts/Transaction";
+
 const TransactionComplete = function () {
+  const history = useHistory();
+  const { user } = useUserState();
+  const { txState: transactions } = useTxState();
+
+  const backToAccount = () => {
+    history.replace('/dashboard');
+  }; 
   return (
     <div>
       <Header />
       <div className={style.wrapper}>
         <div className={style.backButton}>
-          <SmallButton secondary text="Back to Accounts" />
+          <SmallButton secondary text="Back to Accounts" onClick={backToAccount}/>
         </div>
         <div className={style.inner}>
           <div className={style.complete}>
@@ -29,7 +40,7 @@ const TransactionComplete = function () {
               <span className={style.normal}>
                 A confirmation email has been sent to
               </span>{" "}
-              <span className={style.email}>username.</span>
+              <span className={style.email}>{user.username}.</span>
             </div>
             <div className={style.spacer}>
               <div>Payment Details:</div>
@@ -38,13 +49,13 @@ const TransactionComplete = function () {
             <div className={style.rows}>
               <BoldRow title="Date:" value={currentDay()} />
               <BoldRow title="Transfer:" value="USD" />
-              <BoldRow title="Amount:" value="$937.00" />
+              <BoldRow title="Amount:" value={transactions[0].credit.replace("+","")} />
               <BoldRow title="To:" value="YYZ Financial" />
               <BoldRow title="Fee:" value="$0.01" />
             </div>
             <div className={style.buttons}>
-              <Button secondary text="Pay Another Bill" />
-              <Button text="View My Accounts" />
+              <Button secondary text="Pay Another Bill" onClick={()=>history.replace('/balance')} />
+              <Button text="View My Accounts" onClick={backToAccount}/>
             </div>
           </div>
         </div>

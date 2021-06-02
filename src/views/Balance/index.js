@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import registerStyle from "../Register/style.module.css";
 
@@ -9,7 +10,8 @@ import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import Row from "../../components/Row/";
 import creditCard from "../../imgs/credit_card.svg";
 import { useBody } from "../../hooks/body";
-import transactionData from "./data";
+import { useTxState } from "../../contexts/Transaction";
+import { formatter } from "../../utils/money";
 
 const TransactionRow = function ({ transaction }) {
   const { date, transactionDescription, credit, balance } = transaction;
@@ -24,13 +26,25 @@ const TransactionRow = function ({ transaction }) {
 };
 
 const Balance = function () {
+  const history = useHistory();
+  const { txState: transactions, getCurrentBalance } = useTxState();
+  const latestTransaction = transactions[0];
+  const availableCredit = formatter.format(10000 - getCurrentBalance());
   useBody();
+
+  const backToAccount = () => {
+    history.replace('/dashboard');
+  };
+
+  const toPayment = () => {
+    history.replace('/pay');
+  };
 
   return (
     <div>
       <Header />
       <div className={style.wrapper}>
-        <Title buttonText="Back to Accounts">My Accounts</Title>
+        <Title buttonText="Back to Accounts" onClick={backToAccount}>My Accounts</Title>
         <div className={style.body}>
           <div className={style.credit}>
             <img
@@ -51,13 +65,13 @@ const Balance = function () {
             />
             <div className={style.totalsInner}>
               <div className={style.info}>
-                <Row title="Current Balance:" value="$937.00" secondary />
+                <Row title="Current Balance:" value={latestTransaction.balance} secondary />
                 <Row title="Pending Transactions" value="$0.00" />
                 <Row title="Current Rewards" value="$26.00" />
-                <Row title="Available Credit" value="$9,063.00" />
+                <Row title="Available Credit" value={availableCredit} />
                 <Row title="Credit Limit" value="$10,000.00" />
               </div>
-              <SmallButton text="Make a Payment" />
+              <SmallButton onClick={toPayment} text="Make a Payment" />
             </div>
           </div>
           <table className={style.transactions}>
@@ -68,7 +82,7 @@ const Balance = function () {
                 <th className={style.hidden}>CREDIT</th>
                 <th>BALANCE</th>
               </tr>
-              {transactionData.map((data, index) => {
+              {transactions.map((data, index) => {
                 return <TransactionRow key={index} transaction={data} />;
               })}
             </tbody>
