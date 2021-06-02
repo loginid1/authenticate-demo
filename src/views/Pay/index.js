@@ -100,7 +100,7 @@ const Pay = function () {
                       amount={amount}
                       />}
       </div>
-        {txModal && <TransactionModal amount={amount} />}
+        {txModal && <TransactionModal amount={amount} isComplete/>}
         {txModal && <Loader loading={txModal} />}
     </div>
   );

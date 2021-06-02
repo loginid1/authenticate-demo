@@ -7,7 +7,7 @@ const Title = function ({ children, buttonText = "", onClick }) {
   return (
     <div className={style.wrapper}>
       {buttonText && <SmallButton secondary text={buttonText} onClick={onClick}/>}
-      <h1 className={style.title}>{children}</h1>
+      {children && <h1 className={style.title}>{children}</h1>}
     </div>
   );
 };

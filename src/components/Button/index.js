@@ -3,9 +3,12 @@ import style from "./style.module.css";
 
 import { ReactComponent as Fingerprint } from "../../imgs/fingerprint.svg";
 
-const Button = function ({ text, ...props }) {
+const Button = function ({ text, secondary, ...props }) {
   return (
-    <button className={style.button} {...props}>
+    <button
+      className={!secondary ? style.button : style.mainWhiteButton}
+      {...props}
+    >
       {text}
     </button>
   );
