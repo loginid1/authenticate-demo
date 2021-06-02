@@ -1,0 +1,125 @@
+.wrapper {
+  width: 100%;
+  max-width: 1064px;
+  margin: 0 auto;
+}
+
+.backButton {
+  margin: 32px 0 48px;
+}
+
+.inner {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.complete {
+  background: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--secondary-color);
+  font-size: 1.5em;
+}
+
+.checkmark {
+  width: 50px;
+  height: 50px;
+  margin-right: 1em;
+}
+
+.info {
+  padding: 20px;
+  background: var(--secondary-color);
+}
+
+.buttons {
+  max-width: 225px;
+  margin: 0 auto 3em;
+}
+
+.buttons button:first-child {
+  margin-bottom: 1em;
+}
+
+.note {
+  font-size: 0.9em;
+  line-height: 1.3em;
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.email {
+  color: var(--main-color);
+}
+
+.spacer {
+  color: #ccc;
+  font-size: 0.8em;
+}
+
+.spacer hr {
+  background: #ccc;
+  border: none;
+  height: 1px;
+  margin-bottom: 1em;
+}
+
+.rows {
+  margin: 0 auto;
+  font-size: 0.9em;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 2em;
+}
+
+.rows > div:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+@media (min-width: 769px) {
+  .inner {
+    display: flex;
+  }
+
+  .complete {
+    display: flex;
+    font-size: 2.11em;
+    flex-direction: column;
+    text-align: center;
+    background: var(--complete-color);
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  .checkmark {
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: 105px;
+    height: 105px;
+  }
+
+  .info {
+    flex-grow: 2;
+    flex-basis: 0;
+  }
+
+  .rows {
+    margin: 0 0 2em;
+  }
+
+  .buttons {
+    display: flex;
+    margin: 0;
+    max-width: 500px;
+  }
+
+  .buttons button:first-child {
+    margin-bottom: 3em;
+    margin-right: 1em;
+  }
+}

@@ -21,7 +21,7 @@ const Pay = function () {
         </div>
         {maxWidth ? <Desktop /> : <Mobile />}
       </div>
-      <TransactionModal />
+      <TransactionModal isComplete />
     </div>
   );
 };
