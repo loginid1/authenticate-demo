@@ -1,3 +1,4 @@
+import * as uuid from "uuid";
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
 const nativeUrl =
@@ -80,7 +81,8 @@ export const txInit = async (username, tx_payload) => {
       client_id: apiKey, 
       username, 
       tx_type: "text", 
-      tx_payload 
+      tx_payload,
+      nonce: uuid.v4(),
     }
   });
 };

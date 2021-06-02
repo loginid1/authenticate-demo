@@ -12,6 +12,8 @@ import Title from "../../components/Title/";
 import Loader from "../../components/Loader/";
 
 import { useUserState } from "../../contexts/User";
+import { useTxState } from "../../contexts/Transaction";
+import { delay } from "../../utils/delay";
 import { base64ToBuffer, bufferToBase64 } from "../../utils/crypto";
 import {
   txInit,
@@ -22,9 +24,11 @@ const Pay = function () {
   const history = useHistory();
   const maxWidth = useMaxWidth(768);
   const { user } = useUserState();
+  const { txState: transactions, addPayment } = useTxState();
 
   const [txModal, setTxModal] = useState(false);
-  const [amount, setAmount] = useState("$937.00");
+  const [amount, setAmount] = useState(transactions[0].balance);
+  const [isComplete, setComplete] = useState(false);
 
 
   const backToAccount = () => {
@@ -75,6 +79,10 @@ const Pay = function () {
 
       const complete = await txComplete(completePayload);
       console.log(complete);
+      setComplete(true);
+      addPayment(amount);
+      await delay();
+      history.replace("/transactionComplete");
     } catch (e) {
       console.log(e);
     }
@@ -100,7 +108,7 @@ const Pay = function () {
                       amount={amount}
                       />}
       </div>
-        {txModal && <TransactionModal amount={amount} isComplete/>}
+        {txModal && <TransactionModal amount={amount} isComplete={isComplete}/>}
         {txModal && <Loader loading={txModal} />}
     </div>
   );

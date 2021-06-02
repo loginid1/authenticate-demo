@@ -10,7 +10,8 @@ import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import Row from "../../components/Row/";
 import creditCard from "../../imgs/credit_card.svg";
 import { useBody } from "../../hooks/body";
-import transactionData from "./data";
+import { useTxState } from "../../contexts/Transaction";
+import { formatter } from "../../utils/money";
 
 const TransactionRow = function ({ transaction }) {
   const { date, transactionDescription, credit, balance } = transaction;
@@ -26,6 +27,11 @@ const TransactionRow = function ({ transaction }) {
 
 const Balance = function () {
   const history = useHistory();
+  const { txState: transactions, getCurrentBalance } = useTxState();
+  const latestTransaction = transactions[0];
+  const availableCredit = formatter.format(10000 - getCurrentBalance());
+  console.log("preformat:" + formatter.format(10000 - getCurrentBalance()));
+  console.log("availableCredit:" + availableCredit);
   useBody();
 
   const backToAccount = () => {
@@ -61,10 +67,10 @@ const Balance = function () {
             />
             <div className={style.totalsInner}>
               <div className={style.info}>
-                <Row title="Current Balance:" value="$937.00" secondary />
+                <Row title="Current Balance:" value={latestTransaction.balance} secondary />
                 <Row title="Pending Transactions" value="$0.00" />
                 <Row title="Current Rewards" value="$26.00" />
-                <Row title="Available Credit" value="$9,063.00" />
+                <Row title="Available Credit" value={availableCredit} />
                 <Row title="Credit Limit" value="$10,000.00" />
               </div>
               <SmallButton onClick={toPayment} text="Make a Payment" />
@@ -78,7 +84,7 @@ const Balance = function () {
                 <th className={style.hidden}>CREDIT</th>
                 <th>BALANCE</th>
               </tr>
-              {transactionData.map((data, index) => {
+              {transactions.map((data, index) => {
                 return <TransactionRow key={index} transaction={data} />;
               })}
             </tbody>
