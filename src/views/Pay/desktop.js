@@ -43,8 +43,8 @@ const Desktop = function ({
           <Select subject="Account:" value="37280*****5562"></Select>
           <div className={style.input}>
             <label className={style.subject}>Amount:</label>
-            {!validAmount && <label>Amount is not valid</label>}
             <input type="text" onChange={handleAmount} defaultValue={amount} />
+            {!validAmount && <label>Amount is not valid</label>}
           </div>
         </div>
       </fieldset>
