@@ -66,7 +66,7 @@ const Login = function () {
         </div>
         <Input placeholder="Email Address" onChange={handleEmail} />
         <FingerprintButton text="Login" onClick={handleLogin} />
-        <div className={style.spacer}>
+        <div>
           <WordLink info="Not a Member?" link="Register" to="/register" />
         </div>
         <WordLink

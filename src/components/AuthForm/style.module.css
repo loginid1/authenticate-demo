@@ -1,7 +1,3 @@
-input {
-  margin-bottom: 0.5em;
-}
-
 .form {
   width: 100%;
   max-width: 400px;
@@ -12,6 +8,14 @@ input {
   box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.2);
   margin-bottom: 2em;
   z-index: 2;
+}
+
+.form input {
+  margin-bottom: 0.5em;
+}
+
+.form .member {
+  margin-top: 16px;
 }
 
 .logo {
