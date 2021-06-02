@@ -1,4 +1,15 @@
 .wrapper {
+  width: 100%;
+  max-width: 1064px;
+  margin: 0 auto;
+}
+
+.backButton {
+  margin: 32px 0 48px;
+}
+
+.inner {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .complete {
@@ -20,7 +31,6 @@
 .info {
   padding: 20px;
   background: var(--secondary-color);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .buttons {
@@ -69,4 +79,47 @@
 
 .rows > div:not(:last-child) {
   margin-bottom: 1em;
+}
+
+@media (min-width: 769px) {
+  .inner {
+    display: flex;
+  }
+
+  .complete {
+    display: flex;
+    font-size: 2.11em;
+    flex-direction: column;
+    text-align: center;
+    background: var(--complete-color);
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  .checkmark {
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: 105px;
+    height: 105px;
+  }
+
+  .info {
+    flex-grow: 2;
+    flex-basis: 0;
+  }
+
+  .rows {
+    margin: 0 0 2em;
+  }
+
+  .buttons {
+    display: flex;
+    margin: 0;
+    max-width: 500px;
+  }
+
+  .buttons button:first-child {
+    margin-bottom: 3em;
+    margin-right: 1em;
+  }
 }
