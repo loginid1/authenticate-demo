@@ -30,8 +30,6 @@ const Balance = function () {
   const { txState: transactions, getCurrentBalance } = useTxState();
   const latestTransaction = transactions[0];
   const availableCredit = formatter.format(10000 - getCurrentBalance());
-  console.log("preformat:" + formatter.format(10000 - getCurrentBalance()));
-  console.log("availableCredit:" + availableCredit);
   useBody();
 
   const backToAccount = () => {

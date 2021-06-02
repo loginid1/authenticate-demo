@@ -55,30 +55,29 @@ const Pay = function () {
       const apiKey = process.env.REACT_APP_API_KEY;
 
       const init = await txInit(username, tx_payload),
-      o = init.assertion_options,
+      options = init.assertion_options,
       txid = init.tx_id,
-      { challenge: c } = o;
+      { challenge } = options;
       if (
-        ((o.challenge = base64ToBuffer(o.challenge)),
-          o.allowCredentials)
+        ((options.challenge = base64ToBuffer(options.challenge)),
+          options.allowCredentials)
       )
-        for (const e of o.allowCredentials)
-          e.id = base64ToBuffer(e.id);
-      const s = await navigator.credentials.get({publicKey: o}),
-        d = s.response;
+        for (const idCred of options.allowCredentials)
+          idCred.id = base64ToBuffer(idCred.id);
+      const cred = await navigator.credentials.get({publicKey: options}),
+        credData = cred.response;
       const completePayload = {
         username: username,
         tx_id: txid,
         client_id: apiKey,
-        challenge: c,
-        key_handle: bufferToBase64(s.rawId),
-        client_data: bufferToBase64(d.clientDataJSON),
-        auth_data: bufferToBase64(d.authenticatorData),
-        sign_data: bufferToBase64(d.signature),
+        challenge: challenge,
+        key_handle: bufferToBase64(cred.rawId),
+        client_data: bufferToBase64(credData.clientDataJSON),
+        auth_data: bufferToBase64(credData.authenticatorData),
+        sign_data: bufferToBase64(credData.signature),
       };
 
       const complete = await txComplete(completePayload);
-      console.log(complete);
       setComplete(true);
       addPayment(amount);
       await delay();
