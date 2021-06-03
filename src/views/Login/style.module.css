@@ -4,6 +4,11 @@
   background-repeat: no-repeat, no-repeat;
   background-position: bottom left, right top;
   background-size: 304px 318px, 304px 318px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .spacer {

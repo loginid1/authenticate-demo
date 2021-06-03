@@ -14,7 +14,7 @@
 }
 
 @media (min-width: 769px) {
-  .app {
+  .main {
     background-position: 75% 12%, 25% 75%;
   }
 }

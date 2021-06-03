@@ -9,12 +9,9 @@ import AuthForm from "../../components/AuthForm/";
 import Button from "../../components/Button/";
 import { ReactComponent as Circle } from "../../imgs/circle_green.svg";
 import { ReactComponent as Checkmark } from "../../imgs/checkmark.svg";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
-import { useBody } from "../../hooks/body";
 import { useUserState } from "../../contexts/User";
 
 const Complete = function () {
-  useBody();
   const history = useHistory();
   const { logoutUser } = useUserState();
 
@@ -24,7 +21,7 @@ const Complete = function () {
   };
 
   return (
-    <div className={`${registerStyle.app} ${loginStyle.app}`}>
+    <div className={`${loginStyle.app}`}>
       <AuthForm className={codeStyle.form}>
         <div className={style.circle}>
           <Circle />
@@ -39,8 +36,6 @@ const Complete = function () {
         </div>
         <Button text="Return to Homepage" onClick={handleComplete} />
       </AuthForm>
-      <Dots className={registerStyle["dots-left"]} />
-      <Dots className={registerStyle["dots-right"]} />
     </div>
   );
 };

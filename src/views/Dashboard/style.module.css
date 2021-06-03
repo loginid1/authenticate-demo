@@ -34,7 +34,7 @@ button {
   cursor: default;
 }
 
-.accounts div:first-child div:hover {
+.accounts div:first-child > div:hover {
   box-shadow: 0px 3px 6px rgb(0 0 0 / 20%);
 }
 

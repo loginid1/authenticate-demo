@@ -1396,6 +1396,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@loginid/sdk@^0.9.5":
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/@loginid/sdk/-/sdk-0.9.5.tgz#6d284abd6961a7a78459fbe23512709c4baca2cc"
+  integrity sha512-v9+0o46PA20SC62vcF3neB2sC4XwfS0XF8R6hDB2KwJbqOMiXfzuBK9282H0bZHmDsK8Yz9PLFZcb/7526jWvA==
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
