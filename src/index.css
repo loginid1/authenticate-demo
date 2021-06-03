@@ -29,7 +29,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--gray);
+}
+
+#root {
 }
 
 code {
@@ -45,4 +47,7 @@ ul {
 fieldset {
   border: none;
   margin: 0;
+}
+
+#root {
 }

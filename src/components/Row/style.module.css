@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.row p {
+  margin: 0;
+}
+
 .key,
 .value {
   font-weight: bold;

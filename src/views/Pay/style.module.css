@@ -4,6 +4,21 @@
   margin: 0 auto;
 }
 
+.app {
+  height: 100vh;
+  background: url("../../imgs/ribbed_dots_gray.svg"),
+    url("../../imgs/ribbed_dots_gray.svg"), var(--gray);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, right top;
+  background-size: 304px 318px, 304px 318px;
+}
+
+@media (min-width: 769px) {
+  .app {
+    background-position: 75% 12%, 25% 75%;
+  }
+}
+
 .group {
   width: 100%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -148,4 +163,11 @@ form {
 
 label {
   margin-left: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  display: block;
+  margin-top: 0.5em;
 }

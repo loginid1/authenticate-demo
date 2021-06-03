@@ -6,36 +6,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: -1;
   padding: 0 10px;
-}
-
-.dots-left,
-.dots-right {
-  position: absolute;
-  z-index: 0;
-}
-
-.dots-left {
-  bottom: -100px;
-  left: -100px;
-}
-
-.dots-right {
-  top: -100px;
-  right: -100px;
-}
-
-@media (min-width: 600px) {
-  .dots-left {
-    bottom: 0;
-    left: 0;
-  }
-
-  .dots-right {
-    top: 0;
-    right: 0;
-  }
+  background: url("../../imgs/ribbed_dots.svg"),
+    url("../../imgs/ribbed_dots.svg"), var(--main-color);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, right top;
+  background-size: 304px 318px, 304px 318px;
 }
 
 @media (min-width: 769px) {
@@ -43,14 +19,8 @@
     display: flex;
   }
 
-  .dots-left {
-    bottom: 20%;
-    left: 20%;
-  }
-
-  .dots-right {
-    top: 7%;
-    right: 20%;
+  .app {
+    background-position: 75% 12%, 25% 75%;
   }
 }
 
@@ -85,4 +55,8 @@
     font-size: 2em;
     margin-bottom: 0.5em;
   }
+}
+
+.spacer1 {
+  margin-top: 0.1em;
 }

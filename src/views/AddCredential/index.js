@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import platform from "platform";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
-import registerStyle from "../Register/style.module.css";
 
 import Header from "../../components/Header/";
 import Toast from "../../components/Toast/";
-import { useBody } from "../../hooks/body";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import { CustomCard } from "../../components/Card/";
 import OSImage from "../../components/OSImage/";
 import { FingerprintButton } from "../../components/Button/";
@@ -26,7 +23,6 @@ import {
 } from "../../services/loginid";
 
 const AddCredential = function ({ addingCredential = false }) {
-  useBody();
   const { user } = useUserState();
   const [error, setError] = useDelay("");
   const [loading, setLoading] = useState(true);
@@ -98,7 +94,7 @@ const AddCredential = function ({ addingCredential = false }) {
   }, [user.id, addingCredential]);
 
   return (
-    <div className={style.main}>
+    <div className={`${style.main}`}>
       <Header />
       <div className={style.center}>
         <h1 className={style.title}>
@@ -124,8 +120,6 @@ const AddCredential = function ({ addingCredential = false }) {
       </div>
       {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}
-      <Dots className={`${registerStyle["dots-left"]} ${style.dots}`} />
-      <Dots className={`${registerStyle["dots-right"]} ${style.dots}`} />
     </div>
   );
 };

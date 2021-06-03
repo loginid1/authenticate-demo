@@ -1,9 +1,24 @@
-.dots {
-  z-index: -1;
-}
-
 button {
   height: fit-content;
+}
+
+.app {
+  height: 100vh;
+  background: url("../../imgs/ribbed_dots_gray.svg"),
+    url("../../imgs/ribbed_dots_gray.svg"), var(--gray);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, right top;
+  background-size: 304px 318px, 304px 318px;
+}
+
+@media (min-width: 769px) {
+  .footer {
+    display: flex;
+  }
+
+  .app {
+    background-position: 75% 12%, 25% 75%;
+  }
 }
 
 .wrapper {

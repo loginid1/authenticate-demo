@@ -11,10 +11,8 @@ import { FingerprintButton } from "../../components/Button/";
 import Modal from "../../components/Modal";
 import Loader from "../../components/Loader/";
 import Toast, { ToastOption } from "../../components/Toast/";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import { useUserState } from "../../contexts/User";
 import { useDirectweb } from "../../hooks/directweb";
-import { useBody } from "../../hooks/body";
 import { useDelay } from "../../hooks/delay";
 
 const secondDeviceMessage = "Trying to login on a second device?";
@@ -28,7 +26,6 @@ const Login = function () {
   const history = useHistory();
   const [isFido2Supported, dw] = useDirectweb();
   const { loginUser, setTempUser } = useUserState();
-  useBody();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -66,7 +63,7 @@ const Login = function () {
         </div>
         <Input placeholder="Email Address" onChange={handleEmail} />
         <FingerprintButton text="Login" onClick={handleLogin} />
-        <div className={style.spacer}>
+        <div>
           <WordLink info="Not a Member?" link="Register" to="/register" />
         </div>
         <WordLink
@@ -86,8 +83,6 @@ const Login = function () {
           onClick={handleSecondDevice}
         />
       )}
-      <Dots className={registerStyle["dots-left"]} />
-      <Dots className={registerStyle["dots-right"]} />
     </div>
   );
 };
