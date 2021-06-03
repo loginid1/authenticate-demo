@@ -32,7 +32,6 @@ const Dashboard = function () {
           name="Personal Chequing"
           balance="$6,575.39"
           number="456321"
-          onClick={toBalance}
         />
         <Account
           type="Credit"
@@ -40,6 +39,7 @@ const Dashboard = function () {
           balance="$937.00"
           number="4563 2100 5567 9860"
           isCreditCard
+          onClick={toBalance}
         />
       </div>
       <div className={style.button}>

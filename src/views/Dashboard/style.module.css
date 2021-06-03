@@ -30,6 +30,14 @@ button {
   background: var(--gray);
 }
 
+.accounts div:first-child div {
+  cursor: default;
+}
+
+.accounts div:first-child div:hover {
+  box-shadow: 0px 3px 6px rgb(0 0 0 / 20%);
+}
+
 @media (min-width: 916px) {
   .accounts > div:not(:last-child) {
     margin-right: 0.8em;
