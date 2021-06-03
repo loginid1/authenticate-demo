@@ -10,12 +10,8 @@ import AuthForm from "../../components/AuthForm/";
 import Card from "../../components/Card/";
 import { ReactComponent as Clock } from "../../imgs/time.svg";
 import { ReactComponent as Infinity } from "../../imgs/infinite.svg";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
-import { useBody } from "../../hooks/body";
 
 const Complete = function () {
-  useBody();
-  //might not need
   const history = useHistory();
 
   const pushAuthHandle = () => {
@@ -27,7 +23,7 @@ const Complete = function () {
   };
 
   return (
-    <div className={`${registerStyle.app} ${loginStyle.app}`}>
+    <div className={`${loginStyle.app}`}>
       <AuthForm className={`${codeStyle.form} ${style.form}`}>
         <div className={`${pushStyle.info} ${style.info}`}>
           <div>
@@ -53,8 +49,6 @@ const Complete = function () {
           </Card>
         </div>
       </AuthForm>
-      <Dots className={registerStyle["dots-left"]} />
-      <Dots className={registerStyle["dots-right"]} />
     </div>
   );
 };

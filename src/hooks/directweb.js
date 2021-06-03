@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
+import DirectWeb from "@loginid/sdk";
 
-const checkFido2Supported = window.LoginID.browser.default.isFido2Supported;
-const DirectWeb = window.LoginID.directweb.DirectWeb;
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -11,14 +10,14 @@ export const useDirectweb = function () {
   const [dw, setDw] = useState(new DirectWeb());
 
   useEffect(() => {
-    checkFido2Supported().then((bool) => {
+    dw.isFido2Supported().then((bool) => {
       if (bool) {
         setDw(new DirectWeb(baseUrl, apiKey));
       } else {
         setIsFido2Supported(false);
       }
     });
-  }, []);
+  }, [dw]);
 
   return [isFido2Supported, dw];
 };
