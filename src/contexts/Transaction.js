@@ -30,21 +30,33 @@ export const TxProvider = function ({ children }) {
   const [txState, setTxState] = useState(transactions);
 
   const addPayment = (amount) => {
-    const paymentCredit = Number(amount.replace("$",""));
+    const paymentCredit = Number(amount.replace("$", ""));
     const newBalance = formatter.format(getCurrentBalance() - paymentCredit);
-    setTxState([makeTransaction(currentDay(), "PAYMENT - YYZ Financial", "+" + formatter.format(paymentCredit), newBalance), ...txState]);
-  }
+    setTxState([
+      makeTransaction(
+        currentDay(),
+        "PAYMENT - YYZ Financial",
+        "+" + formatter.format(paymentCredit),
+        newBalance
+      ),
+      ...txState,
+    ]);
+  };
 
   const getCurrentBalance = () => {
-    return Number(txState[0].balance.replace("$","").replaceAll(",",""));
-  }
+    return Number(txState[0].balance.replace("$", "").replaceAll(",", ""));
+  };
+
+  const getCurrentBalanceFormatted = () => {
+    return formatter.format(getCurrentBalance());
+  };
 
   const fns = {
     txState,
     addPayment,
     getCurrentBalance,
+    getCurrentBalanceFormatted,
   };
 
   return <TxContext.Provider value={fns}>{children}</TxContext.Provider>;
 };
-

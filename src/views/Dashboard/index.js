@@ -7,10 +7,12 @@ import Title from "../../components/Title/";
 import Account from "../../components/Account/";
 import Button from "../../components/Button/";
 import { useUserState } from "../../contexts/User";
+import { useTxState } from "../../contexts/Transaction";
 
 const Dashboard = function () {
   const history = useHistory();
   const { logoutUser } = useUserState();
+  const { getCurrentBalanceFormatted } = useTxState();
 
   const handleLogout = () => {
     //change this to directory
@@ -36,7 +38,7 @@ const Dashboard = function () {
         <Account
           type="Credit"
           name="Cashback Credit Card"
-          balance="$937.00"
+          balance={getCurrentBalanceFormatted()}
           number="4563 2100 5567 9860"
           isCreditCard
           onClick={toBalance}
