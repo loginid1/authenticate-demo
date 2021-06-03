@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import style from "./style.module.css";
 
 import { currentDay } from "../../utils/date";
@@ -18,17 +18,24 @@ const Select = function ({ subject, value, calender }) {
   );
 };
 
+const regex = /^\$?\d+(\.\d{0,2})?$/;
+
 const Desktop = function ({
-  submitOnClick, 
-  txConfirm, 
+  submitOnClick,
+  txConfirm,
   handleAmount,
   amount,
+  currentBalance,
+  isComplete,
 }) {
-  const [validAmount, setValidAmount] = useState(true);
-  useEffect(() => {
-    const regex = /^\$\d+(\.\d{0,2})?$/;
-    setValidAmount(regex.test(amount));
-  },[amount]);
+  let errorMessage = "";
+
+  if (!regex.test(amount)) {
+    errorMessage = "Amount is not valid";
+  } else if (currentBalance <= 0) {
+    errorMessage = "Credit is fully paid";
+  }
+
   return (
     <form className={style.form} onSubmit={submitOnClick}>
       <fieldset className={style.section1}>
@@ -44,7 +51,9 @@ const Desktop = function ({
           <div className={style.input}>
             <label className={style.subject}>Amount:</label>
             <input type="text" onChange={handleAmount} defaultValue={amount} />
-            {!validAmount && <label>Amount is not valid</label>}
+            {!isComplete && errorMessage && (
+              <span className={style.error}>{errorMessage}</span>
+            )}
           </div>
         </div>
       </fieldset>
@@ -54,7 +63,11 @@ const Desktop = function ({
           <Select subject="Frequency:" value="One Time"></Select>
         </div>
         <div className={style.button1}>
-          <SmallButton onClick={txConfirm} text="Make a Payment" />
+          <SmallButton
+            onClick={txConfirm}
+            text="Make a Payment"
+            disabled={!!errorMessage}
+          />
         </div>
       </fieldset>
     </form>
