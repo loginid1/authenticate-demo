@@ -9,7 +9,6 @@ import { SmallButton } from "../../components/Button/";
 import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import Row from "../../components/Row/";
 import creditCard from "../../imgs/credit_card.svg";
-import { useBody } from "../../hooks/body";
 import { useTxState } from "../../contexts/Transaction";
 import { formatter } from "../../utils/money";
 
@@ -30,21 +29,22 @@ const Balance = function () {
   const { txState: transactions, getCurrentBalance } = useTxState();
   const latestTransaction = transactions[0];
   const availableCredit = formatter.format(10000 - getCurrentBalance());
-  useBody();
 
   const backToAccount = () => {
-    history.replace('/dashboard');
+    history.replace("/dashboard");
   };
 
   const toPayment = () => {
-    history.replace('/pay');
+    history.replace("/pay");
   };
 
   return (
-    <div>
+    <div className={style.app}>
       <Header />
       <div className={style.wrapper}>
-        <Title buttonText="Back to Accounts" onClick={backToAccount}>My Accounts</Title>
+        <Title buttonText="Back to Accounts" onClick={backToAccount}>
+          My Accounts
+        </Title>
         <div className={style.body}>
           <div className={style.credit}>
             <img
@@ -65,7 +65,11 @@ const Balance = function () {
             />
             <div className={style.totalsInner}>
               <div className={style.info}>
-                <Row title="Current Balance:" value={latestTransaction.balance} secondary />
+                <Row
+                  title="Current Balance:"
+                  value={latestTransaction.balance}
+                  secondary
+                />
                 <Row title="Pending Transactions" value="$0.00" />
                 <Row title="Current Rewards" value="$26.00" />
                 <Row title="Available Credit" value={availableCredit} />

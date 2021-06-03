@@ -18,14 +18,18 @@ const TransactionComplete = function () {
   const { txState: transactions } = useTxState();
 
   const backToAccount = () => {
-    history.replace('/dashboard');
-  }; 
+    history.replace("/dashboard");
+  };
   return (
-    <div>
+    <div className={style.app}>
       <Header />
       <div className={style.wrapper}>
         <div className={style.backButton}>
-          <SmallButton secondary text="Back to Accounts" onClick={backToAccount}/>
+          <SmallButton
+            secondary
+            text="Back to Accounts"
+            onClick={backToAccount}
+          />
         </div>
         <div className={style.inner}>
           <div className={style.complete}>
@@ -49,13 +53,20 @@ const TransactionComplete = function () {
             <div className={style.rows}>
               <BoldRow title="Date:" value={currentDay()} />
               <BoldRow title="Transfer:" value="USD" />
-              <BoldRow title="Amount:" value={transactions[0].credit.replace("+","")} />
+              <BoldRow
+                title="Amount:"
+                value={transactions[0].credit.replace("+", "")}
+              />
               <BoldRow title="To:" value="YYZ Financial" />
               <BoldRow title="Fee:" value="$0.01" />
             </div>
             <div className={style.buttons}>
-              <Button secondary text="Pay Another Bill" onClick={()=>history.replace('/balance')} />
-              <Button text="View My Accounts" onClick={backToAccount}/>
+              <Button
+                secondary
+                text="Pay Another Bill"
+                onClick={() => history.replace("/balance")}
+              />
+              <Button text="View My Accounts" onClick={backToAccount} />
             </div>
           </div>
         </div>

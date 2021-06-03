@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
@@ -15,10 +15,7 @@ import { useUserState } from "../../contexts/User";
 import { useTxState } from "../../contexts/Transaction";
 import { delay } from "../../utils/delay";
 import { base64ToBuffer, bufferToBase64 } from "../../utils/crypto";
-import {
-  txInit,
-  txComplete,
-} from "../../services/loginid";
+import { txInit, txComplete } from "../../services/loginid";
 
 const Pay = function () {
   const history = useHistory();
@@ -30,23 +27,22 @@ const Pay = function () {
   const [amount, setAmount] = useState(transactions[0].balance);
   const [isComplete, setComplete] = useState(false);
 
-
   const backToAccount = () => {
-    history.replace('/dashboard');
-  }; 
+    history.replace("/dashboard");
+  };
 
   const showTxModal = () => {
     setTxModal(true);
-  }
+  };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     setTxModal(true);
-  }
+  };
 
   const handleAmount = (event) => {
     setAmount(event.currentTarget.value);
-  }
+  };
 
   const txConfirmationHandler = async () => {
     try {
@@ -55,16 +51,16 @@ const Pay = function () {
       const apiKey = process.env.REACT_APP_API_KEY;
 
       const init = await txInit(username, tx_payload),
-      options = init.assertion_options,
-      txid = init.tx_id,
-      { challenge } = options;
+        options = init.assertion_options,
+        txid = init.tx_id,
+        { challenge } = options;
       if (
         ((options.challenge = base64ToBuffer(options.challenge)),
-          options.allowCredentials)
+        options.allowCredentials)
       )
         for (const idCred of options.allowCredentials)
           idCred.id = base64ToBuffer(idCred.id);
-      const cred = await navigator.credentials.get({publicKey: options}),
+      const cred = await navigator.credentials.get({ publicKey: options }),
         credData = cred.response;
       const completePayload = {
         username: username,
@@ -77,7 +73,7 @@ const Pay = function () {
         sign_data: bufferToBase64(credData.signature),
       };
 
-      const complete = await txComplete(completePayload);
+      await txComplete(completePayload);
       setComplete(true);
       addPayment(amount);
       await delay();
@@ -86,29 +82,34 @@ const Pay = function () {
       console.log(e);
     }
     setTxModal(false);
-  }
+  };
 
   return (
-    <div>
+    <div className={style.app}>
       <Header />
       <div className={style.wrapper}>
         <div>
-          <Title onClick={backToAccount} buttonText="Back to Accounts">Pay Bills</Title>
+          <Title onClick={backToAccount} buttonText="Back to Accounts">
+            Pay Bills
+          </Title>
         </div>
-        {maxWidth ? <Desktop 
-                      submitOnClick={onFormSubmit} 
-                      txConfirm={txConfirmationHandler} 
-                      handleAmount={handleAmount} 
-                      amount={amount}
-                      /> 
-                  : <Mobile 
-                      buttonOnClick={showTxModal} 
-                      txConfirm={txConfirmationHandler} 
-                      amount={amount}
-                      />}
+        {maxWidth ? (
+          <Desktop
+            submitOnClick={onFormSubmit}
+            txConfirm={txConfirmationHandler}
+            handleAmount={handleAmount}
+            amount={amount}
+          />
+        ) : (
+          <Mobile
+            buttonOnClick={showTxModal}
+            txConfirm={txConfirmationHandler}
+            amount={amount}
+          />
+        )}
       </div>
-        {txModal && <TransactionModal amount={amount} isComplete={isComplete}/>}
-        {txModal && <Loader loading={txModal} />}
+      {txModal && <TransactionModal amount={amount} isComplete={isComplete} />}
+      {txModal && <Loader loading={txModal} />}
     </div>
   );
 };

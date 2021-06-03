@@ -1,7 +1,21 @@
 .app {
-  background: var(--gray);
+  background: url("../../imgs/ribbed_dots_gray.svg"),
+    url("../../imgs/ribbed_dots_gray.svg"), var(--gray);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, right top;
+  background-size: 304px 318px, 304px 318px;
 }
 
 .spacer {
   margin-top: 1em;
+}
+
+@media (min-width: 769px) {
+  .footer {
+    display: flex;
+  }
+
+  .app {
+    background-position: 75% 12%, 25% 75%;
+  }
 }

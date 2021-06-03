@@ -8,12 +8,9 @@ import AuthForm from "../../components/AuthForm/";
 import Button from "../../components/Button/";
 import VisitInfo from "../../components/VisitInfo/";
 import { ReactComponent as Warning } from "../../imgs/warning.svg";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
-import { useBody } from "../../hooks/body";
 
 const NotFound = function () {
   const history = useHistory();
-  useBody();
 
   const handleClick = () => {
     history.replace("/login");
@@ -36,8 +33,6 @@ const NotFound = function () {
         <Button text="Return to the Homepage" onClick={handleClick} />
       </AuthForm>
       <VisitInfo colored />
-      <Dots className={registerStyle["dots-left"]} />
-      <Dots className={registerStyle["dots-right"]} />
     </div>
   );
 };

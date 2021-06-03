@@ -4,16 +4,13 @@ import style from "./style.module.css";
 
 import Header from "../../components/Header/";
 import Title from "../../components/Title/";
-import Footer from "../../components/Footer/";
 import Account from "../../components/Account/";
 import Button from "../../components/Button/";
 import { useUserState } from "../../contexts/User";
-import { useBody } from "../../hooks/body";
 
 const Dashboard = function () {
   const history = useHistory();
   const { logoutUser } = useUserState();
-  useBody(false);
 
   const handleLogout = () => {
     //change this to directory
@@ -48,7 +45,6 @@ const Dashboard = function () {
       <div className={style.button}>
         <Button text="Logout" onClick={handleLogout} />
       </div>
-      <Footer />
     </div>
   );
 };

@@ -3,8 +3,19 @@ button {
 }
 
 .app {
-  background: var(--gray);
   width: 100%;
+  height: 100vh;
+  background: url("../../imgs/ribbed_dots_gray.svg"),
+    url("../../imgs/ribbed_dots_gray.svg"), var(--gray);
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom left, right top;
+  background-size: 304px 318px, 304px 318px;
+}
+
+@media (min-width: 769px) {
+  .app {
+    background-position: 75% 12%, 25% 75%;
+  }
 }
 
 .accounts {
@@ -27,7 +38,6 @@ button {
 
 .button {
   width: 100%;
-  background: var(--gray);
 }
 
 .button button {
