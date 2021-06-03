@@ -76,7 +76,7 @@ const Login = function () {
       {!isFido2Supported && <Modal />}
       {error && <Toast message={error} />}
       {loading && <Loader loading={loading} />}
-      {true && (
+      {message && (
         <ToastOption
           message={message}
           option="Click Here"
