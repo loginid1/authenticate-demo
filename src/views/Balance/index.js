@@ -1,12 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
-import registerStyle from "../Register/style.module.css";
 
 import Header from "../../components/Header/";
 import Title from "../../components/Title/";
 import { SmallButton } from "../../components/Button/";
-import { ReactComponent as Dots } from "../../imgs/ribbed_dots_gray.svg";
 import Row from "../../components/Row/";
 import creditCard from "../../imgs/credit_card.svg";
 import { useTxState } from "../../contexts/Transaction";
@@ -93,8 +91,6 @@ const Balance = function () {
           </table>
         </div>
       </div>
-      <Dots className={`${registerStyle["dots-left"]} ${style.dots}`} />
-      <Dots className={`${registerStyle["dots-right"]} ${style.dots}`} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 .modal {
   position: fixed;
-  bottom: 0;
+  bottom: -60px;
   left: 50%;
   width: 90%;
   background: var(--secondary-color);
@@ -8,13 +8,13 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   max-width: 400px;
-  transform: translate(-50%, 250px);
+  transform: translate(-50%, 310px);
   animation: appear 0.3s;
   animation-fill-mode: forwards;
 }
 
 .disappear {
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -60px);
   animation: disappear 0.3s;
   animation-fill-mode: forwards;
   animation-delay: 2s;
@@ -140,13 +140,13 @@
   }
 
   to {
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -60px);
   }
 }
 
 @keyframes disappear {
   from {
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -60px);
   }
 
   to {

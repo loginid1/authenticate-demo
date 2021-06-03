@@ -77,11 +77,13 @@ const Pay = function () {
       setComplete(true);
       addPayment(amount);
       await delay();
+      setTxModal(false);
+      await delay(500);
       history.replace("/transactionComplete");
     } catch (e) {
       console.log(e);
+      setTxModal(false);
     }
-    setTxModal(false);
   };
 
   return (
