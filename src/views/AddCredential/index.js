@@ -50,7 +50,7 @@ const AddCredential = function ({ addingCredential = false }) {
 
       const completePayload = {
         client_id: user.client_id,
-        user_id: user.id,
+        username: user.username,
         attestation_payload: {
           challenge,
           credential_uuid: credentialUUID,
