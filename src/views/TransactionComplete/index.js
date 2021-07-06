@@ -52,7 +52,7 @@ const TransactionComplete = function () {
             </div>
             <div className={style.rows}>
               <BoldRow title="Date:" value={currentDay()} />
-              <BoldRow title="Transfer:" value="USD" />
+              <BoldRow title="Currency:" value="USD" />
               <BoldRow
                 title="Amount:"
                 value={transactions[0].credit.replace("+", "")}
