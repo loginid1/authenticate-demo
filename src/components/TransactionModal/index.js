@@ -8,7 +8,7 @@ import fingerprint from "../../imgs/fingerprint_colored.svg";
 import { ReactComponent as Exclamation } from "../../imgs/exclamation.svg";
 import { ReactComponent as CheckMark } from "../../imgs/checkmark1.svg";
 
-const Transaction = function ({ isComplete, amount}) {
+const Transaction = function ({ isComplete, amount }) {
   const message = isComplete ? "Transaction Approved" : "Approve Transaction?";
 
   return (
@@ -22,7 +22,7 @@ const Transaction = function ({ isComplete, amount}) {
           </div>
         </div>
         <div className={style.info}>
-          <BoldRow title="Transfer:" value="USD" />
+          <BoldRow title="Currency:" value="USD" />
           <BoldRow title="Amount:" value={amount} />
           <BoldRow title="To:" value="YYZ Financial" />
           <BoldRow title="Fee:" value="$0.01" />

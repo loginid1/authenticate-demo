@@ -23,10 +23,10 @@ const Pay = function () {
   const history = useHistory();
   const maxWidth = useMaxWidth(768);
   const { user } = useUserState();
-  const { txState: transactions, addPayment, getCurrentBalance } = useTxState();
+  const { addPayment, getCurrentBalance } = useTxState();
 
   const [txModal, setTxModal] = useState(false);
-  const [amount, setAmount] = useState(transactions[0].balance);
+  const [amount, setAmount] = useState("$10.00");
   const [isComplete, setComplete] = useState(false);
   const [error, setError] = useDelay("");
 
@@ -60,9 +60,11 @@ const Pay = function () {
       if (
         ((options.challenge = base64ToBuffer(options.challenge)),
         options.allowCredentials)
-      )
-        for (const idCred of options.allowCredentials)
+      ) {
+        for (const idCred of options.allowCredentials) {
           idCred.id = base64ToBuffer(idCred.id);
+        }
+      }
       const cred = await navigator.credentials.get({ publicKey: options }),
         credData = cred.response;
       const completePayload = {
