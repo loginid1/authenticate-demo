@@ -12,10 +12,10 @@ import { useTxState } from "../../contexts/Transaction";
 const Dashboard = function () {
   const history = useHistory();
   const { logoutUser } = useUserState();
-  const { getCurrentBalanceFormatted } = useTxState();
+  const { getCurrentBalanceFormatted, restartBalance } = useTxState();
 
   const handleLogout = () => {
-    //change this to directory
+    restartBalance();
     logoutUser();
     history.replace("/login");
   };

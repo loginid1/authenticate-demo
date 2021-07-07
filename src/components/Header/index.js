@@ -6,12 +6,15 @@ import VisitInfo from "../VisitInfo/";
 import { ReactComponent as Logo } from "../../imgs/logo.svg";
 import { SmallButton } from "../Button/";
 import { useUserState } from "../../contexts/User";
+import { useTxState } from "../../contexts/Transaction";
 
 const Header = function () {
   const history = useHistory();
   const { logoutUser } = useUserState();
+  const { restartBalance } = useTxState();
 
   const handleLogout = () => {
+    restartBalance();
     logoutUser();
     history.replace("/login");
   };

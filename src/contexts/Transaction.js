@@ -51,11 +51,17 @@ export const TxProvider = function ({ children }) {
     return formatter.format(getCurrentBalance());
   };
 
+  //used for demo
+  const restartBalance = () => {
+    setTxState(transactions);
+  };
+
   const fns = {
     txState,
     addPayment,
     getCurrentBalance,
     getCurrentBalanceFormatted,
+    restartBalance,
   };
 
   return <TxContext.Provider value={fns}>{children}</TxContext.Provider>;
