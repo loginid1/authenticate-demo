@@ -5,7 +5,6 @@ import { fullCurrentDay } from "../../utils/date";
 
 import { BoldRow } from "../../components/Row/";
 import fingerprint from "../../imgs/fingerprint_colored.svg";
-import { ReactComponent as Exclamation } from "../../imgs/exclamation.svg";
 import { ReactComponent as CheckMark } from "../../imgs/checkmark1.svg";
 
 const Transaction = function ({ isComplete, amount }) {
@@ -29,14 +28,12 @@ const Transaction = function ({ isComplete, amount }) {
         </div>
       </div>
       <div className={isComplete ? style.bottomSuccess : style.bottom}>
-        {isComplete ? (
+        {isComplete && (
           <div className={style.checkmark}>
             <CheckMark />
           </div>
-        ) : (
-          <Exclamation />
         )}
-        <div>{message}</div>
+        <div className={isComplete ? style.approvalMessage : ""}>{message}</div>
       </div>
     </div>
   );

@@ -68,6 +68,7 @@
   padding: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .bottom svg,
@@ -89,6 +90,10 @@
 
 .checkmark {
   animation: scale-in 0.3s cubic-bezier(0.34, 0.01, 0.18, 1.84);
+}
+
+.approvalMessage {
+  animation: appear-message 1s;
 }
 
 @media (min-width: 769px) {
@@ -161,5 +166,15 @@
 
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes appear-message {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
