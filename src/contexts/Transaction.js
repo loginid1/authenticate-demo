@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
-import { currentDay } from "../utils/date";
+import { getDay } from "../utils/date";
 import { formatter } from "../utils/money";
+import { parseJWT } from "../utils/crypto";
 
 const TxContext = createContext(null);
 
@@ -28,13 +29,14 @@ const transactions = [
 
 export const TxProvider = function ({ children }) {
   const [txState, setTxState] = useState(transactions);
+  const [txDetails, setTxDetails] = useState({});
 
   const addPayment = (amount) => {
     const paymentCredit = Number(amount.replace("$", ""));
     const newBalance = formatter.format(getCurrentBalance() - paymentCredit);
     setTxState([
       makeTransaction(
-        currentDay(),
+        getDay(),
         "PAYMENT - YYZ Financial",
         "+" + formatter.format(paymentCredit),
         newBalance
@@ -56,8 +58,14 @@ export const TxProvider = function ({ children }) {
     setTxState(transactions);
   };
 
+  const setJWT = (token) => {
+    setTxDetails(parseJWT(token));
+  };
+
   const fns = {
     txState,
+    txDetails,
+    setJWT,
     addPayment,
     getCurrentBalance,
     getCurrentBalanceFormatted,

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-import { currentDay } from "../../utils/date";
+import { getDay } from "../../utils/date";
 
 import { SmallButton } from "../../components/Button/";
 
@@ -59,7 +59,7 @@ const Desktop = function ({
       </fieldset>
       <fieldset className={style.section1}>
         <div className={style.split}>
-          <Select subject="Date:" value={currentDay()} calender></Select>
+          <Select subject="Date:" value={getDay()} calender></Select>
           <Select subject="Frequency:" value="One Time"></Select>
         </div>
         <div className={style.button1}>

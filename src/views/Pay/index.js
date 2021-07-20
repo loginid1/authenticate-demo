@@ -23,7 +23,7 @@ const Pay = function () {
   const history = useHistory();
   const maxWidth = useMaxWidth(768);
   const { user } = useUserState();
-  const { addPayment, getCurrentBalance } = useTxState();
+  const { addPayment, getCurrentBalance, setJWT } = useTxState();
 
   const [txModal, setTxModal] = useState(false);
   const [amount, setAmount] = useState("$10.00");
@@ -78,7 +78,9 @@ const Pay = function () {
         sign_data: bufferToBase64(credData.signature),
       };
 
-      await txComplete(completePayload);
+      const { jwt } = await txComplete(completePayload);
+
+      setJWT(jwt);
       setComplete(true);
       addPayment(amount);
       await delay();

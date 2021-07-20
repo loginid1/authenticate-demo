@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-import { currentDay } from "../../utils/date";
+import { getDay } from "../../utils/date";
 
 import Button from "../../components/Button/";
 import { ReactComponent as DownArrow } from "../../imgs/down-arrow.svg";
@@ -20,15 +20,11 @@ const Option = function ({ subject, title, extra, children }) {
   );
 };
 
-const Mobile = function ({
-  buttonOnClick, 
-  txConfirm,
-  amount,
-}) {
+const Mobile = function ({ buttonOnClick, txConfirm, amount }) {
   const handleOnClick = () => {
     buttonOnClick();
     txConfirm();
-  }
+  };
 
   return (
     <div>
@@ -51,7 +47,7 @@ const Mobile = function ({
         <Option subject="How Often:" title="Once">
           <DownArrow />
         </Option>
-        <Option subject="Date:" title={currentDay()}>
+        <Option subject="Date:" title={getDay()}>
           <Calender />
         </Option>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-import { fullCurrentDay } from "../../utils/date";
+import { fullDay } from "../../utils/date";
 
 import { BoldRow } from "../../components/Row/";
 import fingerprint from "../../imgs/fingerprint_colored.svg";
@@ -17,7 +17,7 @@ const Transaction = function ({ isComplete, amount }) {
           <img src={fingerprint} alt="Fingerprint" />
           <div>
             <div className={style.td}>Transaction Details</div>
-            <div className={style.date}>{fullCurrentDay()}</div>
+            <div className={style.date}>{fullDay()}</div>
           </div>
         </div>
         <div className={style.info}>

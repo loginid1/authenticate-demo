@@ -1,4 +1,6 @@
 /* eslint-disable */
+import { KJUR } from "jsrsasign"
+
 export const base64EncodeUrl = (str) => {
     return str
         .replace(/\+/g, "-")
@@ -57,4 +59,9 @@ export const base64ToBuffer = (data) => {
     }
 
     return bytes.buffer;
+}
+
+export const parseJWT = (token) => {
+	const { headerObj: header, payloadObj: payload } = KJUR.jws.JWS.parse(token)
+	return { header, payload }
 }

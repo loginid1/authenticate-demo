@@ -1,28 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 
-import { currentDay } from "../../utils/date";
+import { getDay } from "../../utils/date";
 
 import Header from "../../components/Header/";
 import { BoldRow } from "../../components/Row/";
 import Button, { SmallButton } from "../../components/Button/";
 import { ReactComponent as CheckMark } from "../../imgs/checkmark1.svg";
+import PayloadModal from "../../components/PayloadModal/";
 
 import { useUserState } from "../../contexts/User";
 import { useTxState } from "../../contexts/Transaction";
 
 const TransactionComplete = function () {
+  const [modalOn, setModalOn] = useState(false);
   const history = useHistory();
   const { user } = useUserState();
-  const { txState: transactions } = useTxState();
+  const { txState: transactions, txDetails } = useTxState();
+
+  const modalHandler = () => {
+    setModalOn((value) => !value);
+  };
 
   const backToAccount = () => {
     history.replace("/dashboard");
   };
+
+  const paymentDetails = [
+    ["Date:", getDay()],
+    ["Currency:", "USD"],
+    ["Amount:", transactions[0].credit.replace("+", "")],
+    ["To:", "YYZ Financial"],
+    ["Fee:", "$0.01"],
+  ];
+
   return (
     <div className={style.app}>
       <Header />
+      {modalOn && (
+        <PayloadModal txDetails={txDetails} buttonOnClick={modalHandler} />
+      )}
       <div className={style.wrapper}>
         <div className={style.backButton}>
           <SmallButton
@@ -51,14 +69,9 @@ const TransactionComplete = function () {
               <hr />
             </div>
             <div className={style.rows}>
-              <BoldRow title="Date:" value={currentDay()} />
-              <BoldRow title="Currency:" value="USD" />
-              <BoldRow
-                title="Amount:"
-                value={transactions[0].credit.replace("+", "")}
-              />
-              <BoldRow title="To:" value="YYZ Financial" />
-              <BoldRow title="Fee:" value="$0.01" />
+              {paymentDetails.map(([prop, value], index) => {
+                return <BoldRow key={index} title={prop} value={value} />;
+              })}
             </div>
             <div className={style.buttons}>
               <Button
@@ -66,7 +79,10 @@ const TransactionComplete = function () {
                 text="Pay Another Bill"
                 onClick={() => history.replace("/balance")}
               />
-              <Button text="View My Accounts" onClick={backToAccount} />
+              <Button
+                text="Transaction Payload Details"
+                onClick={modalHandler}
+              />
             </div>
           </div>
         </div>
