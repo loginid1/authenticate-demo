@@ -19,7 +19,7 @@ REACT_APP_BASE_URL=              # The base URL of REACT_APP_API_KEY variable
 
 ## Running Locally
 
-This will open a new tab on your browser to http://localhost:3000.
+This will open a new tab on your browser to http://localhost:3000
 
 ```
 yarn start
