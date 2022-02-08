@@ -45,6 +45,12 @@ const AddCredential = function ({ addingCredential = false }) {
       publicKey.challenge = base64ToBuffer(publicKey.challenge);
       publicKey.user.id = base64ToBuffer(publicKey.user.id);
 
+      if (publicKey.excludeCredentials) {
+        for (const credential of publicKey.excludeCredentials) {
+          credential.id = base64ToBuffer(credential.id);
+        }
+      }
+
       const credential = await navigator.credentials.create({ publicKey });
       const response = credential.response;
 
