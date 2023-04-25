@@ -1,8 +1,7 @@
 import * as uuid from "uuid";
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
-const nativeUrl =
-  "https://zpvh1d1z4c.execute-api.us-east-1.amazonaws.com/latest";
+const nativeUrl = process.env.REACT_NATIVE_URL;
 
 const request = async (
   url,
@@ -77,19 +76,19 @@ export const credentialsList = async (userId) => {
 
 export const txInit = async (username, tx_payload) => {
   return await request(`${baseUrl}/api/tx/init`, {
-    body: { 
-      client_id: apiKey, 
-      username, 
-      tx_type: "text", 
+    body: {
+      client_id: apiKey,
+      username,
+      tx_type: "text",
       tx_payload,
       nonce: uuid.v4(),
-    }
+    },
   });
 };
 
 export const txComplete = async (txPayload) => {
-  return await request(`${baseUrl}/api/tx/complete`, { 
-    body: { ...txPayload }
+  return await request(`${baseUrl}/api/tx/complete`, {
+    body: { ...txPayload },
   });
 };
 
